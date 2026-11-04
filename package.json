@@ -1,0 +1,23 @@
+{
+  "name": "dinuge-dk",
+  "version": "1.0.0",
+  "description": "Danmarks hurtigste og mest overskuelige ugenummer-portal.",
+  "main": "_worker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Soped42/dinuge-dk.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Soped42/dinuge-dk/issues"
+  },
+  "homepage": "https://github.com/Soped42/dinuge-dk#readme",
+  "dependencies": {
+    "@cloudflare/kv-asset-handler": "^0.5.0"
+  }
+}

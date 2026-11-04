@@ -1,0 +1,9 @@
+name = "dinuge-dk"
+main = "_worker.js"
+compatibility_date = "2024-01-01"
+
+[site]
+bucket = "./"
+include = ["index.html", "sitemap.xml", "robots.txt", "*.css", "*.js", "*.png", "*.jpg", "*.webp", "*.svg", "*.ico", "*.woff2"]
+exclude = ["blueprint.json", "README.md", "wrangler.toml", "_worker.js", ".gitignore", ".nojekyll"]
+

@@ -1,4 +1,4 @@
-name: Deploy dinuge.dk to one.com Hosting
+name: Deploy dinuge.dk to Cloudflare Workers
 
 on:
   push:
@@ -8,27 +8,21 @@ on:
 
 jobs:
   deploy:
-    name: Sync Webspace via SFTP
+    name: Publish to Cloudflare Workers Sites
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Deploy to one.com via SFTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          server: ${{ secrets.ONECOM_SFTP_HOST }}
-          username: ${{ secrets.ONECOM_SFTP_USER }}
-          password: ${{ secrets.ONECOM_SFTP_PASSWORD }}
-          port: ${{ secrets.ONECOM_SFTP_PORT || 22 }}
-          protocol: sftp
-          local-dir: ./
-          server-dir: ${{ secrets.ONECOM_SFTP_REMOTE_DIR || '/' }}
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
-            **/.venv/**
-            blueprint.json
-            README.md
+          node-version: "22"
+
+      - name: Deploy via Wrangler
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

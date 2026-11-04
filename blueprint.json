@@ -1,0 +1,63 @@
+{
+  "id": "dinuge-dk",
+  "name": "DinUge.dk",
+  "tagline": "Danmarks hurtigste og mest overskuelige ugenummer-portal",
+  "business_type": "general",
+  "language": "da",
+  "theme": {
+    "primary_color": "#2563EB",
+    "secondary_color": "#C60C30",
+    "background_style": "light",
+    "font_family": "Plus Jakarta Sans, sans-serif",
+    "border_radius": "rounded-2xl"
+  },
+  "seo": {
+    "title": "Hvilken uge er det? Ugenummer i dag | DinUge.dk",
+    "description": "Hvilket ugenummer er det i dag? Se det aktuelle ugenummer lige nu på DinUge.dk. Hurtig ugeberegner, danske helligdage, ferieoversigt og komplet kalender for 2026.",
+    "keywords": [
+      "ugenummer",
+      "hvilken uge er det",
+      "uge nummer i dag",
+      "hvilken uge er vi i",
+      "ugenr",
+      "din uge",
+      "kalender 2026"
+    ],
+    "author": "DinUge.dk",
+    "canonical_url": "https://dinuge.dk/",
+    "og_image": null,
+    "twitter_card": "summary_large_image",
+    "site_name": "DinUge.dk",
+    "locale": "da_DK"
+  },
+  "nav": [
+    { "label": "Aktuel Uge", "href": "#ugenummer", "is_cta": false },
+    { "label": "Ugens Dage", "href": "#ugens-dage", "is_cta": false },
+    { "label": "Ugeberegner", "href": "#ugeberegner", "is_cta": false },
+    { "label": "Helligdage 2026", "href": "#helligdage", "is_cta": false },
+    { "label": "FAQ", "href": "#faq", "is_cta": false },
+    { "label": "Beregn Uge", "href": "#ugeberegner", "is_cta": true }
+  ],
+  "hero": {
+    "badge": "🇩🇰 Officiel ISO 8601 Standard",
+    "headline": "Hvilken uge er det i dag?",
+    "subheadline": "Se det aktuelle ugenummer for dags dato, find ud af hvilke dage ugen dækker over, eller brug vores lynhurtige ugeberegner.",
+    "cta_primary_text": "Kopiér Ugenummer",
+    "cta_primary_href": "#ugenummer",
+    "cta_secondary_text": "Ugeberegner",
+    "cta_secondary_href": "#ugeberegner",
+    "image_url": null,
+    "image_alt": null
+  },
+  "footer": {
+    "copyright_text": "© 2026 DinUge.dk. Alle rettigheder forbeholdes.",
+    "tagline": "Danmarks moderne ugenummer-tjeneste bygget til markedet.",
+    "links": [
+      { "label": "Aktuel Uge", "href": "#ugenummer", "is_cta": false },
+      { "label": "Ugeberegner", "href": "#ugeberegner", "is_cta": false },
+      { "label": "Helligdage 2026", "href": "#helligdage", "is_cta": false },
+      { "label": "FAQ", "href": "#faq", "is_cta": false }
+    ],
+    "social_links": []
+  }
+}

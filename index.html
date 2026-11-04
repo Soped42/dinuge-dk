@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="da" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hvilken uge er det? Ugenummer i dag | DinUge.dk</title>
+    <meta name="description" content="Hvilket ugenummer er det i dag? Se det aktuelle ugenummer lige nu på DinUge.dk. Hurtig ugeberegner, danske helligdage, ferieoversigt og komplet kalender for 2026.">
+    <meta name="keywords" content="ugenummer, hvilken uge er det, uge nummer i dag, hvilken uge er vi i, ugenr, ugenummer kalender 2026, din uge, ugeberegner">
+    <meta name="author" content="DinUge.dk">
+    <link rel="canonical" href="https://dinuge.dk/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dinuge.dk/">
+    <meta property="og:title" content="Hvilken uge er det? Se ugenummeret lige nu på DinUge.dk">
+    <meta property="og:description" content="Danmarks hurtigste og mest overskuelige ugenummer-tjeneste. Se aktuel uge, beregn uger og find danske helligdage.">
+    <meta property="og:locale" content="da_DK">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Hvilken uge er det i dag? | DinUge.dk">
+    <meta name="twitter:description" content="Se det aktuelle ugenummer, beregn uger for enhver dato og se danske helligdage 2026 på DinUge.dk.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        danish: {
+                            red: '#C60C30',
+                            darkred: '#9E0A26',
+                        },
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            900: '#1e3a8a',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "DinUge.dk",
+      "url": "https://dinuge.dk/",
+      "description": "Se det aktuelle ugenummer i dag, beregn uger og se danske helligdage.",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "DKK"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Hvilken uge er det i dag?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "DinUge.dk viser altid det nøjagtige ugenummer i realtid i henhold til den officielle internationale ISO 8601 standard."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hvorfor starter ugen om mandagen i Danmark?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "I Danmark og det meste af Europa følger vi ISO 8601 standarden, hvor mandag er ugens første dag og søndag er ugens sidste dag."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Hvad er ISO 8601 standarden for ugenumre?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ISO 8601 fastslår at uge 1 i et år altid er den uge, der indeholder årets første torsdag (eller mindst 4 dage i det nye år)."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.85);
+        }
+        .week-glow {
+            text-shadow: 0 0 40px rgba(37, 99, 235, 0.25);
+        }
+        .dark .week-glow {
+            text-shadow: 0 0 50px rgba(59, 130, 246, 0.4);
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-900 dark:bg-slate-950 dark:text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-white transition-colors duration-200 min-h-screen flex flex-col justify-between">
+
+    <!-- Top Announcement Bar -->
+    <aside aria-label="Notifikation" class="bg-gradient-to-r from-brand-600 via-danish-red to-brand-700 text-white text-xs sm:text-sm font-semibold py-2 px-4 text-center shadow-sm">
+        🇩🇰 Velkommen til <span class="underline font-bold">DinUge.dk</span> – Danmarks hurtigste og reneste ugenummer-portal!
+    </aside>
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Brand Logo -->
+                <a href="/" class="flex items-center space-x-3 group" aria-label="DinUge.dk Forside">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-danish-red flex items-center justify-center text-white font-extrabold text-xl shadow-md shadow-brand-500/25 group-hover:scale-105 transition-transform">
+                        U
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-tight text-slate-900 dark:text-white">
+                            Din<span class="text-danish-red">Uge</span><span class="text-brand-600 text-sm font-bold">.dk</span>
+                        </span>
+                        <span class="block text-[10px] uppercase font-bold tracking-widest text-slate-400">Danmarks Ugeportal</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Links -->
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-semibold" aria-label="Hovedmenu">
+                    <a href="#ugenummer" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Aktuel Uge</a>
+                    <a href="#ugens-dage" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Ugens Dage</a>
+                    <a href="#ugeberegner" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Ugeberegner</a>
+                    <a href="#helligdage" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">Helligdage 2026</a>
+                    <a href="#faq" class="text-slate-600 dark:text-slate-300 hover:text-brand-600 dark:hover:text-white transition-colors">FAQ</a>
+                </nav>
+
+                <!-- Actions: Dark Mode Toggle -->
+                <div class="flex items-center space-x-3">
+                    <button id="theme-toggle" aria-label="Skift mellem lyst og mørkt tema" class="p-2.5 rounded-xl text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all border border-slate-200 dark:border-slate-800">
+                        <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                        </svg>
+                        <svg id="theme-toggle-light-icon" class="hidden w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                        </svg>
+                    </button>
+
+                    <a href="#ugeberegner" class="hidden sm:inline-flex items-center px-4 py-2.5 text-xs font-bold uppercase tracking-wider text-white bg-brand-600 hover:bg-brand-700 rounded-xl shadow-md shadow-brand-500/20 transition-all">
+                        Beregn Uge
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="flex-grow">
+        <!-- HERO: Det aktuelle ugenummer -->
+        <section id="ugenummer" class="pt-10 pb-16 sm:pt-16 sm:pb-24">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+                <!-- Spørgsmåls-badge -->
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-widest bg-brand-500/10 text-brand-600 dark:bg-brand-500/20 dark:text-brand-300 border border-brand-500/20 mb-6">
+                    <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+                    Hvilken uge er det i dag?
+                </div>
+
+                <!-- Det Kæmpe Ugenummer Card -->
+                <div class="glass-card rounded-3xl p-8 sm:p-14 shadow-2xl border border-slate-200/80 dark:border-slate-800 relative overflow-hidden">
+                    <div class="absolute -top-24 -right-24 w-64 h-64 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                    <div class="absolute -bottom-24 -left-24 w-64 h-64 bg-danish-red/10 rounded-full blur-3xl pointer-events-none"></div>
+
+                    <p class="text-base sm:text-lg font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-2">
+                        Lige nu er vi i:
+                    </p>
+
+                    <!-- Dynamisk Kæmpe Ugetekst -->
+                    <h1 id="live-week-display" class="text-7xl sm:text-9xl font-black tracking-tight text-slate-900 dark:text-white week-glow my-4 select-all">
+                        UGE <span id="current-week-num" class="text-brand-600 dark:text-brand-400">45</span>
+                    </h1>
+
+                    <!-- Dagsdato i fuld dansk tekst -->
+                    <p id="live-date-display" class="text-xl sm:text-2xl font-bold text-slate-700 dark:text-slate-200 mt-2">
+                        Indlæser dagsdato...
+                    </p>
+
+                    <!-- Live Real-Time Klokkeslæt -->
+                    <div class="mt-2 inline-flex items-center text-sm font-mono text-slate-500 dark:text-slate-400 font-medium">
+                        <span class="mr-2">Klokken:</span>
+                        <span id="live-clock" class="bg-slate-200 dark:bg-slate-800 px-2.5 py-1 rounded-md text-slate-900 dark:text-white font-bold">--:--:--</span>
+                    </div>
+
+                    <!-- År Progress Bar -->
+                    <div class="mt-8 max-w-md mx-auto">
+                        <div class="flex justify-between text-xs font-bold text-slate-500 dark:text-slate-400 mb-1.5">
+                            <span id="week-progress-label">Uge 45 af 52</span>
+                            <span id="year-percent-label">86% af 2026</span>
+                        </div>
+                        <div class="w-full bg-slate-200 dark:bg-slate-800 rounded-full h-3 overflow-hidden p-0.5">
+                            <div id="year-progress-bar" class="bg-gradient-to-r from-brand-600 to-danish-red h-full rounded-full transition-all duration-1000" style="width: 86%;"></div>
+                        </div>
+                    </div>
+
+                    <!-- Kopiér & Del Knapper -->
+                    <div class="mt-8 flex flex-wrap items-center justify-center gap-3">
+                        <button id="btn-copy-week" aria-label="Kopiér det aktuelle ugenummer til udklipsholder" class="inline-flex items-center px-6 py-3.5 text-sm font-bold text-white bg-slate-900 dark:bg-slate-100 dark:text-slate-900 hover:bg-slate-800 dark:hover:bg-white rounded-2xl shadow-lg transition-all transform hover:-translate-y-0.5">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
+                            </svg>
+                            <span id="copy-text">Kopiér ugenummer</span>
+                        </button>
+
+                        <button id="btn-share" aria-label="Del ugenummeret" class="inline-flex items-center px-5 py-3.5 text-sm font-bold text-slate-700 dark:text-slate-200 bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 border border-slate-200 dark:border-slate-700 rounded-2xl transition-all">
+                            <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z"></path>
+                            </svg>
+                            Del
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Hurtig Uge-Vælger Kontrol (Forrige / I dag / Næste) -->
+                <nav class="mt-8 flex items-center justify-center gap-2 sm:gap-4" aria-label="Ugenavigation">
+                    <button id="btn-prev-week" class="inline-flex items-center px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 hover:border-brand-500 transition-all shadow-sm">
+                        <svg class="w-4 h-4 mr-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        <span id="prev-week-label">Uge 44</span>
+                    </button>
+
+                    <button id="btn-today" class="inline-flex items-center px-5 py-2.5 rounded-xl bg-brand-50 dark:bg-brand-950/60 border border-brand-200 dark:border-brand-800 text-xs sm:text-sm font-extrabold text-brand-600 dark:text-brand-300 hover:bg-brand-100 transition-all shadow-sm">
+                        Gå til I DAG
+                    </button>
+
+                    <button id="btn-next-week" class="inline-flex items-center px-4 py-2.5 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-xs sm:text-sm font-bold text-slate-700 dark:text-slate-300 hover:border-brand-500 transition-all shadow-sm">
+                        <span id="next-week-label">Uge 46</span>
+                        <svg class="w-4 h-4 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                </nav>
+            </div>
+        </section>
+
+        <!-- UGENS DAGE (Mandag - Søndag) -->
+        <section id="ugens-dage" class="py-12 bg-white dark:bg-slate-900/60 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between mb-8 gap-4">
+                    <div>
+                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+                            Ugens 7 Dage for <span id="days-section-week-title" class="text-brand-600 dark:text-brand-400">Uge 45</span>
+                        </h2>
+                        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+                            Oversigt over alle dage i ugen med datoer og status.
+                        </p>
+                    </div>
+                    <div class="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 self-start sm:self-auto border border-slate-200 dark:border-slate-700">
+                        ISO 8601 Standard (Mandag er 1. dag)
+                    </div>
+                </div>
+
+                <!-- 7 Dages Kort Grid -->
+                <div id="week-days-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3 sm:gap-4">
+                    <!-- Fyldes dynamisk af JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERAKTIV UGEBEREGNER (Date Converter) -->
+        <section id="ugeberegner" class="py-16 sm:py-24">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">Smart Værktøj</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+                        Interaktiv Ugeberegner
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+                        Find hurtigt ugenummeret for en bestemt dato, eller find ud af hvilke datoer et ugenummer dækker over.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- BEREGNER 1: Dato til Ugenummer -->
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-600 dark:text-brand-400 flex items-center justify-center font-bold">
+                                    📅
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Find ugenummer for dato</h3>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                                Vælg en dato for at se det officielle ugenummer og hvilken ugedag det er:
+                            </p>
+
+                            <div class="space-y-4">
+                                <div>
+                                    <label for="calc-date-input" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Vælg Dato</label>
+                                    <input type="date" id="calc-date-input" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-medium focus:ring-2 focus:ring-brand-500 outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resultatboks -->
+                        <div id="calc-date-result" class="mt-6 p-4 rounded-2xl bg-brand-50 dark:bg-brand-950/40 border border-brand-200 dark:border-brand-800 text-center">
+                            <span class="text-xs font-bold uppercase tracking-wider text-brand-600 dark:text-brand-400 block mb-1">Resultat</span>
+                            <span id="calc-date-output-week" class="text-2xl font-black text-brand-700 dark:text-brand-300">Vælg en dato ovenfor</span>
+                            <span id="calc-date-output-day" class="text-xs text-slate-500 dark:text-slate-400 block mt-1"></span>
+                        </div>
+                    </div>
+
+                    <!-- BEREGNER 2: Ugenummer til Datoer -->
+                    <div class="glass-card p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center space-x-3 mb-4">
+                                <div class="w-10 h-10 rounded-xl bg-danish-red/10 text-danish-red flex items-center justify-center font-bold">
+                                    🔢
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-900 dark:text-white">Find datoer ud fra ugenr</h3>
+                            </div>
+                            <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">
+                                Indtast et ugenummer for at se start- og slutdato (mandag til søndag):
+                            </p>
+
+                            <div class="grid grid-cols-2 gap-4">
+                                <div>
+                                    <label for="calc-week-input" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Ugenummer (1-53)</label>
+                                    <input type="number" id="calc-week-input" min="1" max="53" value="28" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-medium focus:ring-2 focus:ring-brand-500 outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label for="calc-year-input" class="block text-xs font-bold uppercase tracking-wider text-slate-700 dark:text-slate-300 mb-2">Årstal</label>
+                                    <input type="number" id="calc-year-input" min="2020" max="2035" value="2026" class="w-full px-4 py-3 rounded-xl border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 text-slate-900 dark:text-white font-medium focus:ring-2 focus:ring-brand-500 outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resultatboks -->
+                        <div id="calc-week-result" class="mt-6 p-4 rounded-2xl bg-danish-red/5 dark:bg-danish-red/10 border border-danish-red/20 text-center">
+                            <span class="text-xs font-bold uppercase tracking-wider text-danish-red block mb-1">Resultat for Uge 28 (2026)</span>
+                            <span id="calc-week-output-range" class="text-lg font-black text-slate-900 dark:text-white">6. juli – 12. juli 2026</span>
+                            <span class="text-xs text-slate-500 dark:text-slate-400 block mt-1">Mandag til Søndag</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- DANSKE HELLIGDAGE & SKOLEFERIER 2026 -->
+        <section id="helligdage" class="py-16 bg-white dark:bg-slate-900/60 border-y border-slate-200 dark:border-slate-800">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-danish-red">Årsoversigt</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+                        Danske Helligdage & Ferier 2026
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 mt-3 text-base">
+                        Fuld oversigt med ugenumre over årets officielle helligdage, mærkedage og skoleferier i Danmark.
+                    </p>
+                </div>
+
+                <div class="overflow-x-auto rounded-2xl border border-slate-200 dark:border-slate-800 shadow-md">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 text-xs font-bold uppercase tracking-wider">
+                                <th scope="col" class="py-4 px-6">Helligdag / Ferie</th>
+                                <th scope="col" class="py-4 px-6">Dato</th>
+                                <th scope="col" class="py-4 px-6 text-center">Ugenr</th>
+                                <th scope="col" class="py-4 px-6">Ugedag</th>
+                                <th scope="col" class="py-4 px-6 text-right">Type</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-slate-800 text-sm font-medium">
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Nytårsdag</td>
+                                <td class="py-3.5 px-6">1. januar 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-bold">Uge 1</span></td>
+                                <td class="py-3.5 px-6">Torsdag</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-danish-red/10 text-danish-red font-bold">Helligdag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Vinterferie</td>
+                                <td class="py-3.5 px-6">9. – 15. februar 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-bold">Uge 7</span></td>
+                                <td class="py-3.5 px-6">Hel uge</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold">Skoleferie</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Palmesøndag</td>
+                                <td class="py-3.5 px-6">29. marts 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 font-bold">Uge 13</span></td>
+                                <td class="py-3.5 px-6">Søndag</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-bold">Kirkedag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Skærtorsdag</td>
+                                <td class="py-3.5 px-6">2. april 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-bold">Uge 14</span></td>
+                                <td class="py-3.5 px-6">Torsdag</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-danish-red/10 text-danish-red font-bold">Helligdag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Langfredag</td>
+                                <td class="py-3.5 px-6">3. april 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-bold">Uge 14</span></td>
+                                <td class="py-3.5 px-6">Fredag</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-danish-red/10 text-danish-red font-bold">Helligdag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Påskedag & 2. Påskedag</td>
+                                <td class="py-3.5 px-6">5. – 6. april 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-bold">Uge 14/15</span></td>
+                                <td class="py-3.5 px-6">Søn / Man</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-danish-red/10 text-danish-red font-bold">Helligdag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Kristi Himmelfartsdag</td>
+                                <td class="py-3.5 px-6">14. maj 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-bold">Uge 20</span></td>
+                                <td class="py-3.5 px-6">Torsdag</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-danish-red/10 text-danish-red font-bold">Helligdag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Pinsedag & 2. Pinsedag</td>
+                                <td class="py-3.5 px-6">24. – 25. maj 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-bold">Uge 21/22</span></td>
+                                <td class="py-3.5 px-6">Søn / Man</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-danish-red/10 text-danish-red font-bold">Helligdag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Grundlovsdag</td>
+                                <td class="py-3.5 px-6">5. juni 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-slate-200 dark:bg-slate-800 font-bold">Uge 23</span></td>
+                                <td class="py-3.5 px-6">Fredag</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 font-bold">Mærkedag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Sommerferie (Skoleferie)</td>
+                                <td class="py-3.5 px-6">27. juni – 9. august 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-bold">Uge 27–32</span></td>
+                                <td class="py-3.5 px-6">6 uger</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold">Skoleferie</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Efterårsferie (Uge 42)</td>
+                                <td class="py-3.5 px-6">10. – 18. oktober 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-amber-100 dark:bg-amber-900/50 text-amber-700 dark:text-amber-300 font-bold">Uge 42</span></td>
+                                <td class="py-3.5 px-6">Hel uge</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-amber-500/10 text-amber-600 dark:text-amber-400 font-bold">Skoleferie</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Juleaften, Juledag & 2. Juledag</td>
+                                <td class="py-3.5 px-6">24. – 26. december 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-bold">Uge 52</span></td>
+                                <td class="py-3.5 px-6">Tor / Fre / Lør</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-danish-red/10 text-danish-red font-bold">Helligdag</span></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40">
+                                <td class="py-3.5 px-6 font-bold text-slate-900 dark:text-white">Nytårsaften</td>
+                                <td class="py-3.5 px-6">31. december 2026</td>
+                                <td class="py-3.5 px-6 text-center"><span class="px-2.5 py-1 rounded-md bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300 font-bold">Uge 53</span></td>
+                                <td class="py-3.5 px-6">Torsdag</td>
+                                <td class="py-3.5 px-6 text-right text-xs"><span class="px-2 py-0.5 rounded bg-blue-500/10 text-blue-600 font-bold">Mærkedag</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- HVORFOR DINUGE.DK SAMMENLIGNET MED UGENR.DK -->
+        <section class="py-16">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">Fordele</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+                        Hvorfor vælge DinUge.dk?
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 mt-2 text-sm">
+                        Vi har bygget Danmarks mest brugervenlige ugenummer-side med fokus på hastighed og overblik.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="p-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-500/10 text-emerald-600 flex items-center justify-center font-bold text-lg mb-4">
+                            ⚡
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Ingen generende reklamer</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Mange traditionelle kalendersider er fyldt med blinkende bannere. DinUge.dk loader lynhurtigt og giver dig svaret med det samme.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-brand-500/10 text-brand-600 flex items-center justify-center font-bold text-lg mb-4">
+                            📱
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">Perfekt på mobil & tablet</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Designet mobil-først med store trykknapper, ét-klik kopiér-funktion og behagelig mørk tilstand (Dark Mode) om aftenen.
+                        </p>
+                    </div>
+
+                    <div class="p-6 rounded-2xl glass-card border border-slate-200 dark:border-slate-800 shadow-sm">
+                        <div class="w-10 h-10 rounded-xl bg-danish-red/10 text-danish-red flex items-center justify-center font-bold text-lg mb-4">
+                            🎯
+                        </div>
+                        <h3 class="text-lg font-bold text-slate-900 dark:text-white mb-2">100% Præcis ISO 8601</h3>
+                        <p class="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                            Beregnet matematisk efter den officielle standard for ugenumre i Danmark, så du aldrig er i tvivl om ferieplanlægning eller arbejdsaftaler.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ: Ofte Stillede Spørgsmål (SEO Powerhouse) -->
+        <section id="faq" class="py-16 bg-white dark:bg-slate-900/60 border-t border-slate-200 dark:border-slate-800">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-xs font-extrabold uppercase tracking-widest text-brand-600 dark:text-brand-400">Viden & Fakta</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight mt-2">
+                        Ofte Stillede Spørgsmål om Ugenumre
+                    </h2>
+                </div>
+
+                <div class="space-y-4">
+                    <details class="group border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-slate-50 dark:bg-slate-900 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white">
+                            <span>Hvilken uge er vi i lige nu?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Øverst på denne side ser du altid det præcise, aktuelle ugenummer for dags dato. Siden opdateres automatisk og tager højde for det danske kalendersystem.
+                        </p>
+                    </details>
+
+                    <details class="group border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-slate-50 dark:bg-slate-900 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white">
+                            <span>Hvorfor bruger vi ugenumre i Danmark?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Ugenumre er standard i dansk erhvervsliv, i skoler og ved ferieplanlægning (som fx uge 7, uge 28 eller uge 42). Det gør det enkelt at aftale leveringer og møder uden at skulle specificere specifikke datoer.
+                        </p>
+                    </details>
+
+                    <details class="group border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-slate-50 dark:bg-slate-900 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white">
+                            <span>Hvordan defineres Uge 1 i henhold til ISO 8601?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Ifølge den internationale standard ISO 8601 er Uge 1 den første uge i året, der indeholder mindst 4 dage af det nye år, hvilket altid svarer til den uge, der indeholder årets første torsdag (4. januar er altid i uge 1).
+                        </p>
+                    </details>
+
+                    <details class="group border border-slate-200 dark:border-slate-800 rounded-2xl p-6 bg-slate-50 dark:bg-slate-900 [&_summary::-webkit-details-marker]:hidden">
+                        <summary class="flex items-center justify-between cursor-pointer font-bold text-slate-900 dark:text-white">
+                            <span>Hvorfor har nogle år 53 uger?</span>
+                            <span class="transition group-open:rotate-180">
+                                <svg class="w-5 h-5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </span>
+                        </summary>
+                        <p class="mt-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                            Et almindeligt år har 365 dage, hvilket er 52 uger og 1 dag (skudår har 52 uger og 2 dage). Ca. hvert 5. eller 6. år opstår der et år med 53 uger, f.eks. år 2026, hvor 31. december falder på en torsdag i uge 53!
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-600 to-danish-red flex items-center justify-center text-white font-extrabold text-sm">
+                        U
+                    </div>
+                    <span class="text-xl font-bold text-white">Din<span class="text-danish-red">Uge</span>.dk</span>
+                </div>
+                <div class="flex flex-wrap justify-center gap-6 text-sm">
+                    <a href="#ugenummer" class="hover:text-white transition-colors">Aktuel Uge</a>
+                    <a href="#ugeberegner" class="hover:text-white transition-colors">Ugeberegner</a>
+                    <a href="#helligdage" class="hover:text-white transition-colors">Helligdage 2026</a>
+                    <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 gap-4">
+                <p>© 2026 DinUge.dk – Danmarks hurtigste ugenummer. Alle rettigheder forbeholdes.</p>
+                <p>Bygget efter ISO 8601 standard • Klar til one.com hosting</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logik: ISO 8601 Beregner, Live Ur, Dage, og Interaktivitet -->
+    <script>
+        // Danske månedsnavne og ugedage
+        const DANISH_DAYS = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'];
+        const DANISH_DAYS_ORDERED = ['Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag', 'Søndag'];
+        const DANISH_MONTHS = [
+            'januar', 'februar', 'marts', 'april', 'maj', 'juni',
+            'juli', 'august', 'september', 'oktober', 'november', 'december'
+        ];
+
+        // ISO 8601 Ugenummer Beregning
+        function getISOWeekNumber(d) {
+            const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+            const dayNum = date.getUTCDay() || 7;
+            date.setUTCDate(date.getUTCDate() + 4 - dayNum);
+            const yearStart = new Date(Date.UTC(date.getUTCFullYear(), 0, 1));
+            return Math.ceil((((date - yearStart) / 86400000) + 1) / 7);
+        }
+
+        // Antal uger i et givent år (52 eller 53 efter ISO 8601)
+        function getWeeksInYear(year) {
+            const dec28 = new Date(year, 11, 28);
+            return getISOWeekNumber(dec28);
+        }
+
+        // Find mandag i en given uge og år
+        function getMondayOfWeek(week, year) {
+            const jan4 = new Date(year, 0, 4);
+            const jan4Day = jan4.getDay() || 7;
+            const mondayWeek1 = new Date(year, 0, 4 - jan4Day + 1);
+            const targetMonday = new Date(mondayWeek1);
+            targetMonday.setDate(mondayWeek1.getDate() + (week - 1) * 7);
+            return targetMonday;
+        }
+
+        // Initialisering af Dagsdato & Aktuel Uge
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        const currentWeek = getISOWeekNumber(now);
+        let selectedWeek = currentWeek;
+        let selectedYear = currentYear;
+
+        // Opdater det Kæmpe Ugenummer og Dagsdato
+        function renderLiveHero() {
+            document.getElementById('current-week-num').textContent = currentWeek;
+
+            const dayName = DANISH_DAYS[now.getDay()];
+            const dayDate = now.getDate();
+            const monthName = DANISH_MONTHS[now.getMonth()];
+            document.getElementById('live-date-display').textContent = 
+                `I dag er ${dayName.toLowerCase()} den ${dayDate}. ${monthName} ${currentYear}`;
+
+            // Beregn fremskridt for året
+            const totalWeeks = getWeeksInYear(currentYear);
+            const percent = Math.min(100, Math.round((currentWeek / totalWeeks) * 100));
+            document.getElementById('week-progress-label').textContent = `Uge ${currentWeek} af ${totalWeeks}`;
+            document.getElementById('year-percent-label').textContent = `${percent}% af ${currentYear}`;
+            document.getElementById('year-progress-bar').style.width = `${percent}%`;
+
+            updateWeekNavButtons();
+            renderWeekDays(selectedWeek, selectedYear);
+        }
+
+        // Opdater Forrige/Næste knapper
+        function updateWeekNavButtons() {
+            const prevW = selectedWeek > 1 ? selectedWeek - 1 : getWeeksInYear(selectedYear - 1);
+            const nextW = selectedWeek < getWeeksInYear(selectedYear) ? selectedWeek + 1 : 1;
+            document.getElementById('prev-week-label').textContent = `Uge ${prevW}`;
+            document.getElementById('next-week-label').textContent = `Uge ${nextW}`;
+        }
+
+        // Render Ugens 7 Dage Grid
+        function renderWeekDays(week, year) {
+            document.getElementById('days-section-week-title').textContent = `Uge ${week} (${year})`;
+
+            const monday = getMondayOfWeek(week, year);
+            const grid = document.getElementById('week-days-grid');
+            grid.innerHTML = '';
+
+            for (let i = 0; i < 7; i++) {
+                const dayDate = new Date(monday);
+                dayDate.setDate(monday.getDate() + i);
+
+                const isToday = (
+                    dayDate.getDate() === now.getDate() &&
+                    dayDate.getMonth() === now.getMonth() &&
+                    dayDate.getFullYear() === now.getFullYear()
+                );
+
+                const card = document.createElement('div');
+                card.className = `p-4 sm:p-5 rounded-2xl border transition-all text-center flex flex-col justify-between ${
+                    isToday
+                        ? 'bg-brand-600 text-white border-brand-600 shadow-xl scale-[1.03] ring-2 ring-brand-400 ring-offset-2 dark:ring-offset-slate-900'
+                        : 'bg-slate-50 dark:bg-slate-800/80 text-slate-800 dark:text-slate-200 border-slate-200 dark:border-slate-700/80 hover:border-brand-500'
+                }`;
+
+                card.innerHTML = `
+                    <div>
+                        <span class="text-xs uppercase font-extrabold tracking-wider ${isToday ? 'text-brand-100' : 'text-slate-400 dark:text-slate-400'}">
+                            ${DANISH_DAYS_ORDERED[i]}
+                        </span>
+                        <div class="text-3xl sm:text-4xl font-black my-2 ${isToday ? 'text-white' : 'text-slate-900 dark:text-white'}">
+                            ${dayDate.getDate()}
+                        </div>
+                        <div class="text-xs font-semibold ${isToday ? 'text-brand-100' : 'text-slate-500 dark:text-slate-400'}">
+                            ${DANISH_MONTHS[dayDate.getMonth()]}
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-3 border-t ${isToday ? 'border-brand-500' : 'border-slate-200 dark:border-slate-700'}">
+                        <span class="text-[11px] font-bold ${isToday ? 'text-brand-100' : (i >= 5 ? 'text-danish-red' : 'text-slate-400')}">
+                            ${isToday ? '⭐️ I DAG' : (i >= 5 ? 'Weekend' : 'Hverdag')}
+                        </span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            }
+        }
+
+        // Live Klokkeslæt
+        function updateClock() {
+            const d = new Date();
+            const h = String(d.getHours()).padStart(2, '0');
+            const m = String(d.getMinutes()).padStart(2, '0');
+            const s = String(d.getSeconds()).padStart(2, '0');
+            document.getElementById('live-clock').textContent = `${h}:${m}:${s}`;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Kopiér Ugenummer Knap
+        const btnCopy = document.getElementById('btn-copy-week');
+        const copyText = document.getElementById('copy-text');
+        if (btnCopy && copyText) {
+            btnCopy.addEventListener('click', () => {
+                navigator.clipboard.writeText(`Uge ${currentWeek}`).then(() => {
+                    copyText.textContent = `Kopieret: Uge ${currentWeek}! 🎉`;
+                    setTimeout(() => {
+                        copyText.textContent = 'Kopiér ugenummer';
+                    }, 2500);
+                });
+            });
+        }
+
+        // Del Knap
+        const btnShare = document.getElementById('btn-share');
+        if (btnShare) {
+            btnShare.addEventListener('click', () => {
+                if (navigator.share) {
+                    navigator.share({
+                        title: 'DinUge.dk',
+                        text: `Det er lige nu Uge ${currentWeek} i Danmark!`,
+                        url: window.location.href,
+                    }).catch(() => {});
+                } else {
+                    navigator.clipboard.writeText(window.location.href);
+                    alert('Linket til DinUge.dk er kopieret til din udklipsholder!');
+                }
+            });
+        }
+
+        // Forrige / Næste Uge Knapper
+        document.getElementById('btn-prev-week').addEventListener('click', () => {
+            if (selectedWeek > 1) {
+                selectedWeek--;
+            } else {
+                selectedYear--;
+                selectedWeek = getWeeksInYear(selectedYear);
+            }
+            updateWeekNavButtons();
+            renderWeekDays(selectedWeek, selectedYear);
+        });
+
+        document.getElementById('btn-next-week').addEventListener('click', () => {
+            if (selectedWeek < getWeeksInYear(selectedYear)) {
+                selectedWeek++;
+            } else {
+                selectedYear++;
+                selectedWeek = 1;
+            }
+            updateWeekNavButtons();
+            renderWeekDays(selectedWeek, selectedYear);
+        });
+
+        document.getElementById('btn-today').addEventListener('click', () => {
+            selectedWeek = currentWeek;
+            selectedYear = currentYear;
+            updateWeekNavButtons();
+            renderWeekDays(selectedWeek, selectedYear);
+        });
+
+        // Interaktiv Ugeberegner 1: Dato -> Ugenr
+        const calcDateInput = document.getElementById('calc-date-input');
+        const calcDateOutputWeek = document.getElementById('calc-date-output-week');
+        const calcDateOutputDay = document.getElementById('calc-date-output-day');
+
+        // Sæt dagsdato som standard i datovælger
+        const yyyy = now.getFullYear();
+        const mm = String(now.getMonth() + 1).padStart(2, '0');
+        const dd = String(now.getDate()).padStart(2, '0');
+        calcDateInput.value = `${yyyy}-${mm}-${dd}`;
+
+        function updateDateCalculation() {
+            if (!calcDateInput.value) return;
+            const parts = calcDateInput.value.split('-');
+            const chosen = new Date(parseInt(parts[0]), parseInt(parts[1]) - 1, parseInt(parts[2]));
+            const w = getISOWeekNumber(chosen);
+            const day = DANISH_DAYS[chosen.getDay()];
+            calcDateOutputWeek.textContent = `Uge ${w}`;
+            calcDateOutputDay.textContent = `${day} d. ${chosen.getDate()}. ${DANISH_MONTHS[chosen.getMonth()]} ${chosen.getFullYear()}`;
+        }
+        calcDateInput.addEventListener('change', updateDateCalculation);
+        updateDateCalculation();
+
+        // Interaktiv Ugeberegner 2: Ugenr -> Datoer
+        const calcWeekInput = document.getElementById('calc-week-input');
+        const calcYearInput = document.getElementById('calc-year-input');
+        const calcWeekOutputRange = document.getElementById('calc-week-output-range');
+
+        function updateWeekCalculation() {
+            const w = parseInt(calcWeekInput.value) || 1;
+            const y = parseInt(calcYearInput.value) || 2026;
+            const monday = getMondayOfWeek(w, y);
+            const sunday = new Date(monday);
+            sunday.setDate(monday.getDate() + 6);
+
+            calcWeekOutputRange.textContent = 
+                `${monday.getDate()}. ${DANISH_MONTHS[monday.getMonth()]} – ${sunday.getDate()}. ${DANISH_MONTHS[sunday.getMonth()]} ${y}`;
+        }
+        calcWeekInput.addEventListener('input', updateWeekCalculation);
+        calcYearInput.addEventListener('input', updateWeekCalculation);
+        updateWeekCalculation();
+
+        // Dark Mode Switcher
+        const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+        const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+        const themeToggleBtn = document.getElementById('theme-toggle');
+
+        if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeToggleLightIcon.classList.remove('hidden');
+        } else {
+            document.documentElement.classList.remove('dark');
+            themeToggleDarkIcon.classList.remove('hidden');
+        }
+
+        themeToggleBtn.addEventListener('click', function() {
+            themeToggleDarkIcon.classList.toggle('hidden');
+            themeToggleLightIcon.classList.toggle('hidden');
+
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('color-theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+            }
+        });
+
+        // Kør opstart
+        renderLiveHero();
+    </script>
+</body>
+</html>

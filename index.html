@@ -33,27 +33,34 @@
                         mono: ['"JetBrains Mono"', 'monospace'],
                     },
                     colors: {
-                        pine: {
-                            50: '#F4F7F4',
-                            100: '#E4ECE4',
-                            200: '#C8DAC9',
-                            600: '#3D5A3E', /* Norwegian Spruce / Nordic Forest */
-                            700: '#2E452F',
-                            800: '#233524',
-                            900: '#182419',
+                        sage: {
+                            50: '#F5F7F5',
+                            100: '#E7ECE7',
+                            200: '#D2DDD2',
+                            300: '#ADC2AD',
+                            400: '#7E9C7F',
+                            500: '#587B59', /* Soft calming sage green */
+                            600: '#466447',
+                            700: '#384E39',
+                            800: '#2A3B2B',
+                            900: '#1C271D',
                         },
-                        sand: {
-                            50: '#FAF8F5',
-                            100: '#F4EFEA', /* Birch/Linen light bg */
-                            200: '#E6DDD5', /* subtle border */
-                            300: '#D5C7BC',
-                            400: '#A39282',
-                            700: '#4A3E34',
-                            800: '#332A23',
-                            900: '#1F1A16',
+                        linen: {
+                            50: '#FCFBF9',  /* Ultra-light airy canvas */
+                            100: '#F7F5F0', /* Soft warm linen card background */
+                            200: '#EDE8E0', /* Gentle, subtle border */
+                            300: '#DFD8CC',
+                            400: '#9C9385',
+                            500: '#756D60',
+                            600: '#524C42',
+                            700: '#3D372F',
+                            800: '#26221D',
+                            900: '#171411',
                         },
-                        clay: '#9B4E38', /* Muted Terracotta for holidays */
-                        ochre: '#B08838', /* Muted Amber for school vacations */
+                        calm: {
+                            holiday: '#B86A55', /* Gentle muted terracotta */
+                            vacation: '#C79A4B', /* Soft sunlit amber */
+                        }
                     }
                 }
             }
@@ -75,50 +82,44 @@
 
     <style>
         body {
-            background-color: #FAF8F5;
-            color: #2D2823;
+            background-color: #FAF9F6;
+            color: #2F2B26;
         }
         .dark body {
-            background-color: #171C17;
-            color: #E8E5DF;
-        }
-        .nordic-border {
-            border: 1px solid #E6DDD5;
-        }
-        .dark .nordic-border {
-            border: 1px solid #2B352B;
+            background-color: #171A17;
+            color: #ECEAE5;
         }
     </style>
 </head>
-<body class="bg-sand-50 text-sand-900 dark:bg-[#151A15] dark:text-[#E8E6E1] min-h-screen flex flex-col justify-between font-sans selection:bg-pine-600 selection:text-white transition-colors duration-200">
+<body class="bg-[#FAF9F6] text-linen-800 dark:bg-[#161916] dark:text-[#ECEAE5] min-h-screen flex flex-col justify-between font-sans selection:bg-sage-400 selection:text-white transition-colors duration-200">
 
     <!-- Top Header: Quiet & Functional -->
-    <header class="border-b border-sand-200 dark:border-[#263126] bg-sand-50/90 dark:bg-[#151A15]/90 sticky top-0 z-20 backdrop-blur-sm">
+    <header class="border-b border-linen-200 dark:border-[#272E27] bg-[#FAF9F6]/90 dark:bg-[#161916]/90 sticky top-0 z-20 backdrop-blur-sm">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <span class="inline-flex items-center justify-center w-8 h-8 rounded border border-pine-600 text-pine-600 dark:border-pine-200 dark:text-pine-200 font-bold text-sm">
+                <span class="inline-flex items-center justify-center w-8 h-8 rounded border border-sage-500 text-sage-600 dark:border-sage-300 dark:text-sage-200 font-bold text-sm">
                     U
                 </span>
-                <span class="font-semibold tracking-tight text-lg text-sand-900 dark:text-sand-50">
-                    DinUge<span class="text-pine-600 dark:text-pine-200 font-normal">.dk</span>
+                <span class="font-semibold tracking-tight text-lg text-linen-800 dark:text-linen-50">
+                    DinUge<span class="text-sage-500 dark:text-sage-300 font-normal">.dk</span>
                 </span>
             </div>
 
             <!-- Controls: Window Slider & Dark Mode -->
             <div class="flex items-center space-x-2 sm:space-x-4">
-                <div class="inline-flex rounded-md border border-sand-200 dark:border-[#2D3A2D] bg-sand-100/50 dark:bg-[#1C231C] p-0.5" role="group" aria-label="Kalender navigation">
-                    <button id="btn-prev-month" aria-label="Forrige måned" class="px-2.5 py-1 text-xs font-medium text-sand-700 dark:text-sand-200 hover:text-pine-600 dark:hover:text-white transition">
+                <div class="inline-flex rounded-md border border-linen-200 dark:border-[#2C352C] bg-white dark:bg-[#1E241E] p-0.5 shadow-sm" role="group" aria-label="Kalender navigation">
+                    <button id="btn-prev-month" aria-label="Forrige måned" class="px-2.5 py-1 text-xs font-medium text-linen-600 dark:text-linen-300 hover:text-sage-600 dark:hover:text-white transition">
                         ← Forrige
                     </button>
-                    <button id="btn-today-month" aria-label="Gå til i dag" class="px-2.5 py-1 text-xs font-semibold text-pine-600 dark:text-pine-200 border-x border-sand-200 dark:border-[#2D3A2D] hover:bg-sand-200/50 dark:hover:bg-[#253025] transition">
+                    <button id="btn-today-month" aria-label="Gå til i dag" class="px-2.5 py-1 text-xs font-semibold text-sage-600 dark:text-sage-300 border-x border-linen-200 dark:border-[#2C352C] hover:bg-linen-100 dark:hover:bg-[#283228] transition">
                         I dag
                     </button>
-                    <button id="btn-next-month" aria-label="Næste måned" class="px-2.5 py-1 text-xs font-medium text-sand-700 dark:text-sand-200 hover:text-pine-600 dark:hover:text-white transition">
+                    <button id="btn-next-month" aria-label="Næste måned" class="px-2.5 py-1 text-xs font-medium text-linen-600 dark:text-linen-300 hover:text-sage-600 dark:hover:text-white transition">
                         Næste →
                     </button>
                 </div>
 
-                <button id="theme-toggle" aria-label="Skift lys eller mørk tilstand" class="p-2 rounded border border-sand-200 dark:border-[#2D3A2D] text-sand-700 dark:text-sand-300 hover:bg-sand-100 dark:hover:bg-[#222B22] transition">
+                <button id="theme-toggle" aria-label="Skift lys eller mørk tilstand" class="p-2 rounded border border-linen-200 dark:border-[#2C352C] bg-white dark:bg-[#1E241E] text-linen-600 dark:text-linen-300 hover:bg-linen-100 dark:hover:bg-[#283228] transition shadow-sm">
                     <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
                     </svg>
@@ -134,11 +135,11 @@
     <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 flex flex-col gap-10">
 
         <!-- Focal Point: Det aktuelle ugenummer centreret i rolig nordisk typografi -->
-        <section aria-labelledby="current-week-heading" class="border border-sand-200 dark:border-[#263126] bg-sand-100/60 dark:bg-[#1A211A] rounded-xl p-8 sm:p-12 text-center">
-            <h1 id="current-week-heading" class="text-6xl sm:text-8xl font-bold tracking-tight text-sand-900 dark:text-sand-50">
-                Uge <span id="hero-week-num" class="text-pine-600 dark:text-pine-200">--</span>
+        <section aria-labelledby="current-week-heading" class="border border-linen-200 dark:border-[#272E27] bg-white/70 dark:bg-[#1B201B] rounded-2xl p-8 sm:p-14 text-center shadow-sm backdrop-blur-sm">
+            <h1 id="current-week-heading" class="text-6xl sm:text-8xl font-bold tracking-tight text-linen-900 dark:text-linen-50">
+                Uge <span id="hero-week-num" class="text-sage-500 dark:text-sage-300">--</span>
             </h1>
-            <p id="hero-date-str" class="text-lg sm:text-xl text-sand-700 dark:text-sand-300 mt-3 font-medium">
+            <p id="hero-date-str" class="text-lg sm:text-xl text-linen-600 dark:text-linen-300 mt-3 font-medium">
                 --
             </p>
         </section>
@@ -146,18 +147,18 @@
         <!-- 3-Måneders Glidende Kalender Vindue -->
         <section aria-label="3-måneders kalenderoversigt">
             <!-- Tegnforklaring (Legend) -->
-            <div class="flex flex-wrap items-center justify-end gap-4 text-xs text-sand-700 dark:text-sand-300 mb-4">
+            <div class="flex flex-wrap items-center justify-end gap-4 text-xs text-linen-500 dark:text-linen-400 mb-4">
                 <span class="inline-flex items-center gap-1.5">
-                    <span class="w-3 h-3 rounded-full bg-pine-600 dark:bg-pine-200"></span> I dag
+                    <span class="w-2.5 h-2.5 rounded-full bg-sage-500 dark:bg-sage-300"></span> I dag
                 </span>
                 <span class="inline-flex items-center gap-1.5">
-                    <span class="w-3 h-3 rounded bg-clay/20 border border-clay text-clay inline-block"></span> Helligdag
+                    <span class="w-2.5 h-2.5 rounded bg-calm-holiday/20 border border-calm-holiday text-calm-holiday inline-block"></span> Helligdag
                 </span>
                 <span class="inline-flex items-center gap-1.5">
-                    <span class="w-3 h-3 rounded bg-ochre/20 border border-ochre text-ochre inline-block"></span> Skoleferie
+                    <span class="w-2.5 h-2.5 rounded bg-calm-vacation/20 border border-calm-vacation text-calm-vacation inline-block"></span> Skoleferie
                 </span>
-                <span class="inline-flex items-center gap-1.5 text-sand-500">
-                    <span class="w-3 h-3 rounded border border-dashed border-pine-600 text-[10px] flex items-center justify-center font-bold">✎</span> Klik dato
+                <span class="inline-flex items-center gap-1.5 text-linen-400">
+                    <span class="w-2.5 h-2.5 rounded border border-dashed border-sage-500 text-[9px] flex items-center justify-center font-bold">✎</span> Klik dato
                 </span>
             </div>
 
@@ -167,54 +168,54 @@
             </div>
 
             <!-- BOKS UNDER KALENDEREN: Vejledning på dansk -->
-            <aside aria-label="Vejledning til oprettelse af kalenderaftaler" class="border border-sand-200 dark:border-[#263126] bg-sand-100/70 dark:bg-[#1A211A] rounded-xl p-6 sm:p-7">
-                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-sand-200 dark:border-[#263126] mb-5">
+            <aside aria-label="Vejledning til oprettelse af kalenderaftaler" class="border border-linen-200 dark:border-[#272E27] bg-white/70 dark:bg-[#1B201B] rounded-2xl p-6 sm:p-7 shadow-sm">
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-linen-200 dark:border-[#272E27] mb-5">
                     <div>
-                        <div class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-pine-600 dark:text-pine-200 mb-1">
+                        <div class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-sage-600 dark:text-sage-300 mb-1">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
                             Opret Aftaler Direkte i Kalenderen
                         </div>
-                        <h3 class="text-lg font-bold text-sand-900 dark:text-sand-50">
+                        <h3 class="text-lg font-bold text-linen-800 dark:text-linen-50">
                             Sådan opretter og sender du en kalenderinvitation
                         </h3>
                     </div>
-                    <div class="inline-flex items-center gap-1.5 text-xs text-sand-500 dark:text-sand-400">
-                        <span class="text-pine-600 dark:text-pine-200 font-bold">✓</span>
+                    <div class="inline-flex items-center gap-1.5 text-xs text-linen-400 dark:text-linen-400">
+                        <span class="text-sage-500 dark:text-sage-300 font-bold">✓</span>
                         <span>100% lokalt &amp; fortroligt – ingen data gemmes</span>
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-xs text-sand-700 dark:text-sand-300">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-xs text-linen-600 dark:text-linen-300">
                     <div class="flex items-start gap-3">
-                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-pine-600/10 text-pine-600 dark:bg-pine-400/20 dark:text-pine-200 font-bold flex items-center justify-center text-xs">1</span>
+                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage-500/10 text-sage-600 dark:bg-sage-400/20 dark:text-sage-300 font-bold flex items-center justify-center text-xs">1</span>
                         <div>
-                            <strong class="text-sand-900 dark:text-sand-100 block mb-0.5">Vælg en dato</strong>
+                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5">Vælg en dato</strong>
                             <span>Klik på en vilkårlig dato i de tre måneder ovenfor.</span>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-pine-600/10 text-pine-600 dark:bg-pine-400/20 dark:text-pine-200 font-bold flex items-center justify-center text-xs">2</span>
+                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage-500/10 text-sage-600 dark:bg-sage-400/20 dark:text-sage-300 font-bold flex items-center justify-center text-xs">2</span>
                         <div>
-                            <strong class="text-sand-900 dark:text-sand-100 block mb-0.5">Udfyld aftalen</strong>
+                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5">Udfyld aftalen</strong>
                             <span>Indtast overskrift, tidsrum, sted og eventuelt formål/dagsorden.</span>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-pine-600/10 text-pine-600 dark:bg-pine-400/20 dark:text-pine-200 font-bold flex items-center justify-center text-xs">3</span>
+                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage-500/10 text-sage-600 dark:bg-sage-400/20 dark:text-sage-300 font-bold flex items-center justify-center text-xs">3</span>
                         <div>
-                            <strong class="text-sand-900 dark:text-sand-100 block mb-0.5">Eksporter .ICS-fil</strong>
+                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5">Eksporter .ICS-fil</strong>
                             <span>Standard kalenderfil downloades klar til Outlook, Apple Kalender eller Google.</span>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
-                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-pine-600/10 text-pine-600 dark:bg-pine-400/20 dark:text-pine-200 font-bold flex items-center justify-center text-xs">4</span>
+                        <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage-500/10 text-sage-600 dark:bg-sage-400/20 dark:text-sage-300 font-bold flex items-center justify-center text-xs">4</span>
                         <div>
-                            <strong class="text-sand-900 dark:text-sand-100 block mb-0.5">Send invitation</strong>
+                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5">Send invitation</strong>
                             <span>Angiv modtagerens mail for automatisk klargøring i dit mailprogram.</span>
                         </div>
                     </div>
@@ -223,8 +224,8 @@
         </section>
 
         <!-- Detaljeret oversigt over mærkedage og ferier i vinduet -->
-        <section aria-labelledby="period-events-heading" class="border-t border-sand-200 dark:border-[#263126] pt-8">
-            <h3 id="period-events-heading" class="text-lg font-bold tracking-tight text-sand-900 dark:text-sand-50 mb-4">
+        <section aria-labelledby="period-events-heading" class="border-t border-linen-200 dark:border-[#272E27] pt-8">
+            <h3 id="period-events-heading" class="text-lg font-bold tracking-tight text-linen-800 dark:text-linen-50 mb-4">
                 Helligdage &amp; Ferier i denne periode
             </h3>
             <div id="period-events-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
@@ -235,14 +236,14 @@
     </main>
 
     <!-- Dialog / Modal til Oprettelse af Begivenhed (.ICS) -->
-    <dialog id="event-dialog" aria-labelledby="dialog-title" class="backdrop:bg-black/40 backdrop:backdrop-blur-sm p-0 rounded-xl border border-sand-200 dark:border-[#2D3A2D] bg-sand-50 dark:bg-[#182018] text-sand-900 dark:text-sand-100 shadow-xl max-w-lg w-full mx-auto my-auto">
+    <dialog id="event-dialog" aria-labelledby="dialog-title" class="backdrop:bg-black/30 backdrop:backdrop-blur-sm p-0 rounded-2xl border border-linen-200 dark:border-[#2D352D] bg-[#FCFBF9] dark:bg-[#1B201B] text-linen-800 dark:text-linen-100 shadow-2xl max-w-lg w-full mx-auto my-auto">
         <div class="p-6 sm:p-8">
-            <div class="flex items-center justify-between pb-4 border-b border-sand-200 dark:border-[#2B352B]">
+            <div class="flex items-center justify-between pb-4 border-b border-linen-200 dark:border-[#2D352D]">
                 <div>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-pine-600 dark:text-pine-200 block">Opret Kalenderaftale</span>
-                    <h3 id="dialog-title" class="text-xl font-bold text-sand-900 dark:text-sand-50">Opret begivenhed</h3>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sage-600 dark:text-sage-300 block">Opret Kalenderaftale</span>
+                    <h3 id="dialog-title" class="text-xl font-bold text-linen-800 dark:text-linen-50">Opret begivenhed</h3>
                 </div>
-                <button type="button" id="dialog-close-btn" aria-label="Luk dialog" class="text-sand-400 hover:text-sand-700 dark:hover:text-white p-1 rounded">
+                <button type="button" id="dialog-close-btn" aria-label="Luk dialog" class="text-linen-400 hover:text-linen-700 dark:hover:text-white p-1 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
@@ -251,69 +252,69 @@
 
             <form id="event-form" class="mt-6 flex flex-col gap-4">
                 <!-- Dato & Ugenr Info Banner -->
-                <div class="p-3 bg-sand-100/70 dark:bg-[#202920] rounded border border-sand-200 dark:border-[#2B352B] flex items-center justify-between text-xs">
-                    <span class="font-medium text-sand-700 dark:text-sand-300">Valgt dato: <strong id="modal-selected-date-str" class="text-sand-900 dark:text-white">--</strong></span>
-                    <span id="modal-selected-week-str" class="px-2 py-0.5 rounded bg-pine-600 text-white font-mono text-[10px] font-bold">Uge --</span>
+                <div class="p-3 bg-linen-100 dark:bg-[#232B23] rounded-xl border border-linen-200 dark:border-[#2D352D] flex items-center justify-between text-xs">
+                    <span class="font-medium text-linen-600 dark:text-linen-300">Valgt dato: <strong id="modal-selected-date-str" class="text-linen-800 dark:text-white">--</strong></span>
+                    <span id="modal-selected-week-str" class="px-2 py-0.5 rounded-full bg-sage-500 text-white font-mono text-[10px] font-bold">Uge --</span>
                 </div>
                 <input type="hidden" id="event-date">
 
                 <!-- 1. Headline (Titel) -->
                 <div>
-                    <label for="event-headline" class="block text-xs font-semibold uppercase tracking-wider text-sand-700 dark:text-sand-300 mb-1.5">
-                        Overskrift <span class="text-clay">*</span>
+                    <label for="event-headline" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
+                        Overskrift <span class="text-calm-holiday">*</span>
                     </label>
-                    <input type="text" id="event-headline" required placeholder="F.eks. Projektmøde eller Kaffeaftale" class="w-full px-3.5 py-2 text-sm rounded border border-sand-300 dark:border-[#354235] bg-white dark:bg-[#121612] text-sand-900 dark:text-sand-50 focus:outline-none focus:ring-2 focus:ring-pine-600">
+                    <input type="text" id="event-headline" required placeholder="F.eks. Projektmøde eller Kaffeaftale" class="w-full px-3.5 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
                 </div>
 
                 <!-- 2. Location (Sted) -->
                 <div>
-                    <label for="event-location" class="block text-xs font-semibold uppercase tracking-wider text-sand-700 dark:text-sand-300 mb-1.5">
+                    <label for="event-location" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
                         Sted
                     </label>
-                    <input type="text" id="event-location" placeholder="F.eks. Kontoret, Mødelokale 2 eller Online / Teams" class="w-full px-3.5 py-2 text-sm rounded border border-sand-300 dark:border-[#354235] bg-white dark:bg-[#121612] text-sand-900 dark:text-sand-50 focus:outline-none focus:ring-2 focus:ring-pine-600">
+                    <input type="text" id="event-location" placeholder="F.eks. Kontoret, Mødelokale 2 eller Online / Teams" class="w-full px-3.5 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
                 </div>
 
                 <!-- 3. Time (Start / Slut) -->
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label for="event-start-time" class="block text-xs font-semibold uppercase tracking-wider text-sand-700 dark:text-sand-300 mb-1.5">
+                        <label for="event-start-time" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
                             Starttidspunkt
                         </label>
-                        <input type="time" id="event-start-time" value="09:00" class="w-full px-3 py-2 text-sm rounded border border-sand-300 dark:border-[#354235] bg-white dark:bg-[#121612] text-sand-900 dark:text-sand-50 focus:outline-none focus:ring-2 focus:ring-pine-600">
+                        <input type="time" id="event-start-time" value="09:00" class="w-full px-3 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
                     </div>
                     <div>
-                        <label for="event-end-time" class="block text-xs font-semibold uppercase tracking-wider text-sand-700 dark:text-sand-300 mb-1.5">
+                        <label for="event-end-time" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
                             Sluttidspunkt
                         </label>
-                        <input type="time" id="event-end-time" value="10:00" class="w-full px-3 py-2 text-sm rounded border border-sand-300 dark:border-[#354235] bg-white dark:bg-[#121612] text-sand-900 dark:text-sand-50 focus:outline-none focus:ring-2 focus:ring-pine-600">
+                        <input type="time" id="event-end-time" value="10:00" class="w-full px-3 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
                     </div>
                 </div>
 
                 <!-- 4. Purpose (Formål / Beskrivelse) -->
                 <div>
-                    <label for="event-purpose" class="block text-xs font-semibold uppercase tracking-wider text-sand-700 dark:text-sand-300 mb-1.5">
+                    <label for="event-purpose" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
                         Formål &amp; Beskrivelse
                     </label>
-                    <textarea id="event-purpose" rows="3" placeholder="Kort dagsorden, formål eller forberedelse..." class="w-full px-3.5 py-2 text-sm rounded border border-sand-300 dark:border-[#354235] bg-white dark:bg-[#121612] text-sand-900 dark:text-sand-50 focus:outline-none focus:ring-2 focus:ring-pine-600"></textarea>
+                    <textarea id="event-purpose" rows="3" placeholder="Kort dagsorden, formål eller forberedelse..." class="w-full px-3.5 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400"></textarea>
                 </div>
 
                 <!-- 5. Modtager E-mailadresse -->
                 <div>
-                    <label for="event-email" class="block text-xs font-semibold uppercase tracking-wider text-sand-700 dark:text-sand-300 mb-1.5">
+                    <label for="event-email" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
                         Send invitation til (E-mailadresse)
                     </label>
-                    <input type="email" id="event-email" placeholder="kollega@virksomhed.dk" class="w-full px-3.5 py-2 text-sm rounded border border-sand-300 dark:border-[#354235] bg-white dark:bg-[#121612] text-sand-900 dark:text-sand-50 focus:outline-none focus:ring-2 focus:ring-pine-600">
-                    <p class="text-[11px] text-sand-500 dark:text-sand-400 mt-1">
+                    <input type="email" id="event-email" placeholder="kollega@virksomhed.dk" class="w-full px-3.5 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
+                    <p class="text-[11px] text-linen-400 mt-1">
                         Downloader en officiel .ics-fil og klargør en e-mail i dit mailprogram klar til at sende.
                     </p>
                 </div>
 
                 <!-- Handlinger -->
-                <div class="mt-4 pt-4 border-t border-sand-200 dark:border-[#2B352B] flex flex-col-reverse sm:flex-row items-center justify-end gap-3">
-                    <button type="button" id="dialog-cancel-btn" class="w-full sm:w-auto px-4 py-2 text-xs font-semibold uppercase tracking-wider text-sand-700 dark:text-sand-300 hover:text-sand-900 dark:hover:text-white">
+                <div class="mt-4 pt-4 border-t border-linen-200 dark:border-[#2D352D] flex flex-col-reverse sm:flex-row items-center justify-end gap-3">
+                    <button type="button" id="dialog-cancel-btn" class="w-full sm:w-auto px-4 py-2 text-xs font-semibold uppercase tracking-wider text-linen-500 hover:text-linen-800 dark:hover:text-white transition">
                         Annuller
                     </button>
-                    <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded text-xs font-semibold uppercase tracking-wider text-white bg-pine-600 hover:bg-pine-700 dark:bg-pine-700 dark:hover:bg-pine-600 transition shadow-sm">
+                    <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider text-white bg-sage-500 hover:bg-sage-600 dark:bg-sage-600 dark:hover:bg-sage-500 transition shadow-sm">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
@@ -325,16 +326,16 @@
     </dialog>
 
     <!-- Enkelt, bæredygtigt Footer -->
-    <footer class="border-t border-sand-200 dark:border-[#263126] bg-sand-100/40 dark:bg-[#111611] py-8 text-xs text-sand-400 dark:text-sand-300">
+    <footer class="border-t border-linen-200 dark:border-[#272E27] bg-white/50 dark:bg-[#131613] py-8 text-xs text-linen-400">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
                 <p>© 2026 DinUge.dk — Nordisk enkelhed og ugekalender.</p>
-                <span class="hidden sm:inline text-sand-300 dark:text-sand-700">•</span>
-                <p class="text-sand-700 dark:text-sand-300">Drevet med fokus på funktion og lavt energiforbrug.</p>
+                <span class="hidden sm:inline text-linen-200 dark:text-linen-700">•</span>
+                <p class="text-linen-500 dark:text-linen-400">Drevet med fokus på funktion og lavt energiforbrug.</p>
             </div>
 
             <!-- Buy Me a Coffee Support Link -->
-            <a href="https://buymeacoffee.com/grakan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-md border border-sand-200 dark:border-[#2D3A2D] bg-white dark:bg-[#1A221A] text-sand-800 dark:text-sand-200 hover:text-pine-600 dark:hover:text-white hover:border-pine-600 dark:hover:border-pine-400 transition shadow-sm font-medium">
+            <a href="https://buymeacoffee.com/grakan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-linen-200 dark:border-[#2C352C] bg-white dark:bg-[#1A221A] text-linen-700 dark:text-linen-200 hover:text-sage-600 dark:hover:text-white hover:border-sage-400 dark:hover:border-sage-300 transition shadow-sm font-medium">
                 <span class="text-base" aria-hidden="true">☕</span>
                 <span>Støt siden via Buy Me a Coffee</span>
             </a>
@@ -493,12 +494,12 @@
                 const month = targetDate.getMonth();
 
                 const monthCard = document.createElement('div');
-                monthCard.className = 'border border-sand-200 dark:border-[#263126] bg-white dark:bg-[#1B221B] rounded-lg p-4 sm:p-5 flex flex-col justify-between';
+                monthCard.className = 'border border-linen-200 dark:border-[#272E27] bg-white/80 dark:bg-[#1B201B] rounded-2xl p-4 sm:p-5 flex flex-col justify-between shadow-sm';
 
                 const monthHeader = document.createElement('div');
-                monthHeader.className = 'flex justify-between items-center mb-4 pb-2 border-b border-sand-100 dark:border-[#263126]';
+                monthHeader.className = 'flex justify-between items-center mb-4 pb-2 border-b border-linen-100 dark:border-[#272E27]';
                 monthHeader.innerHTML = `
-                    <h3 class="font-bold text-base text-sand-900 dark:text-sand-50">${DANISH_MONTHS[month]} ${year}</h3>
+                    <h3 class="font-semibold text-base text-linen-800 dark:text-linen-50">${DANISH_MONTHS[month]} ${year}</h3>
                 `;
                 monthCard.appendChild(monthHeader);
 
@@ -506,7 +507,7 @@
                 table.className = 'w-full text-xs';
 
                 const headerRow = document.createElement('div');
-                headerRow.className = 'grid grid-cols-8 gap-1 text-center font-medium text-sand-400 dark:text-sand-300 pb-2 border-b border-sand-100 dark:border-[#263126] text-[11px]';
+                headerRow.className = 'grid grid-cols-8 gap-1 text-center font-medium text-linen-400 dark:text-linen-400 pb-2 border-b border-linen-100 dark:border-[#272E27] text-[11px]';
                 DANISH_DAYS_SHORT.forEach(d => {
                     const span = document.createElement('span');
                     span.textContent = d;
@@ -529,7 +530,7 @@
                     const weekSampleDate = new Date(year, month, currentDay);
                     const weekNum = getISOWeekNumber(weekSampleDate);
                     const weekNumCol = document.createElement('span');
-                    weekNumCol.className = 'font-mono text-[10px] text-pine-600 dark:text-pine-200 font-semibold bg-sand-100 dark:bg-[#253025] py-0.5 rounded';
+                    weekNumCol.className = 'font-mono text-[10px] text-sage-600 dark:text-sage-300 font-semibold bg-linen-100 dark:bg-[#252E25] py-0.5 rounded-md';
                     weekNumCol.textContent = `U${weekNum}`;
                     weekRow.appendChild(weekNumCol);
 
@@ -537,7 +538,7 @@
                         if ((currentDay === 1 && dayIndex < startDay) || currentDay > totalDays) {
                             const emptyCell = document.createElement('div');
                             emptyCell.className = 'py-1 text-xs text-center flex items-center justify-center min-h-[28px]';
-                            emptyCell.innerHTML = '<span class="text-sand-300 dark:text-sand-700 font-light opacity-30">•</span>';
+                            emptyCell.innerHTML = '<span class="text-linen-200 dark:text-linen-800 font-light">•</span>';
                             weekRow.appendChild(emptyCell);
                         } else {
                             const thisDate = new Date(year, month, currentDay);
@@ -555,24 +556,24 @@
                             dayBtn.type = 'button';
                             dayBtn.setAttribute('aria-label', `Opret aftale ${currentDay}. ${DANISH_MONTHS[month]} ${year}`);
                             
-                            let baseClasses = 'w-full py-1 text-xs rounded text-center relative flex flex-col items-center justify-center min-h-[28px] transition hover:ring-1 hover:ring-pine-600 focus:outline-none focus:ring-2 focus:ring-pine-600 ';
+                            let baseClasses = 'w-full py-1 text-xs rounded-lg text-center relative flex flex-col items-center justify-center min-h-[28px] transition hover:ring-1 hover:ring-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 ';
                             
                             if (isToday) {
-                                baseClasses += 'bg-pine-600 text-white dark:bg-pine-200 dark:text-pine-900 font-bold rounded-full w-6 h-6 mx-auto leading-6 ';
+                                baseClasses += 'bg-sage-500 text-white dark:bg-sage-300 dark:text-sage-900 font-bold rounded-full w-6 h-6 mx-auto leading-6 shadow-sm ';
                             } else if (holidayName) {
-                                baseClasses += 'bg-clay/15 text-clay dark:text-orange-300 font-semibold rounded ';
+                                baseClasses += 'bg-calm-holiday/15 text-calm-holiday dark:text-red-300 font-semibold rounded-lg ';
                                 if (!eventsFound.find(e => e.date === isoStr)) {
                                     eventsFound.push({ date: isoStr, name: holidayName, type: 'Helligdag', uge: weekNum });
                                 }
                             } else if (vacationName) {
-                                baseClasses += 'bg-ochre/15 text-ochre dark:text-amber-200 rounded ';
+                                baseClasses += 'bg-calm-vacation/15 text-calm-vacation dark:text-amber-200 rounded-lg ';
                                 if (!eventsFound.find(e => e.name === vacationName)) {
                                     eventsFound.push({ date: isoStr, name: vacationName, type: 'Skoleferie', uge: weekNum });
                                 }
                             } else if (dayIndex >= 6) {
-                                baseClasses += 'text-sand-400 dark:text-sand-300 hover:text-sand-800 dark:hover:text-sand-100 ';
+                                baseClasses += 'text-linen-400 dark:text-linen-400 hover:text-linen-700 dark:hover:text-linen-100 ';
                             } else {
-                                baseClasses += 'text-sand-800 dark:text-sand-100 hover:bg-sand-100 dark:hover:bg-[#253025] ';
+                                baseClasses += 'text-linen-700 dark:text-linen-100 hover:bg-linen-100 dark:hover:bg-[#252E25] ';
                             }
 
                             dayBtn.className = baseClasses;
@@ -606,13 +607,13 @@
                     const dParts = ev.date.split('-');
                     const dayStr = `${parseInt(dParts[2])}. ${DANISH_MONTHS[parseInt(dParts[1]) - 1]}`;
                     const item = document.createElement('div');
-                    item.className = 'border border-sand-200 dark:border-[#263126] bg-white dark:bg-[#1B221B] p-2.5 rounded flex items-center justify-between';
+                    item.className = 'border border-linen-200 dark:border-[#272E27] bg-white/80 dark:bg-[#1B201B] p-3 rounded-xl flex items-center justify-between shadow-sm';
                     item.innerHTML = `
-                        <div class="flex items-center space-x-2 truncate">
-                            <span class="w-2 h-2 rounded-full ${ev.type === 'Helligdag' ? 'bg-clay' : 'bg-ochre'}"></span>
-                            <span class="font-semibold text-sand-900 dark:text-sand-50 truncate">${ev.name}</span>
+                        <div class="flex items-center space-x-2.5 truncate">
+                            <span class="w-2 h-2 rounded-full ${ev.type === 'Helligdag' ? 'bg-calm-holiday' : 'bg-calm-vacation'}"></span>
+                            <span class="font-medium text-linen-800 dark:text-linen-50 truncate">${ev.name}</span>
                         </div>
-                        <div class="text-xs text-sand-400 shrink-0 ml-2">
+                        <div class="text-xs text-linen-400 shrink-0 ml-2">
                             <span>Uge ${ev.uge}</span> • <span>${dayStr}</span>
                         </div>
                     `;

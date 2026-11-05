@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hvilken uge er det? Aktuel uge og 3-måneders kalender | DinUge.dk</title>
-    <meta name="description" content="Se det aktuelle ugenummer og en 3-måneders kalender med ugenumre, danske helligdage og skoleferier. Opret aftaler og download .ics kalenderinvitation.">
-    <meta name="keywords" content="ugenummer, hvilken uge er det, uge i dag, kalender med ugenumre, danske helligdage 2026, skoleferier, ics kalenderinvitation">
+    <title id="meta-title">Hvilken uge er det? Aktuel uge og 3-måneders kalender | DinUge.dk</title>
+    <meta name="description" id="meta-description" content="Se det aktuelle ugenummer og en 3-måneders kalender med ugenumre, helligdage og skoleferier. Opret aftaler og download .ics kalenderinvitation.">
+    <meta name="keywords" content="ugenummer, week number, hvilken uge er det, calendar with week numbers, danske helligdage 2026, skoleferier, ics calendar invite">
     <meta name="author" content="DinUge.dk">
     <link rel="canonical" href="https://dinuge.dk/">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://dinuge.dk/">
-    <meta property="og:title" content="Hvilken uge er det? | DinUge.dk">
-    <meta property="og:description" content="Minimalistisk nordisk kalender med aktuelle ugenumre, helligdage, skoleferier og nem ICS eksport.">
+    <meta property="og:title" id="og-title" content="Hvilken uge er det? | DinUge.dk">
+    <meta property="og:description" id="og-desc" content="Minimalistisk nordisk kalender med aktuelle ugenumre, helligdage, skoleferier og nem ICS eksport.">
     <meta property="og:locale" content="da_DK">
 
-    <!-- Fonts: Inter (Nordic typography) + JetBrains Mono -->
+    <!-- Fonts: Inter + JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -39,16 +39,16 @@
                             200: '#D2DDD2',
                             300: '#ADC2AD',
                             400: '#7E9C7F',
-                            500: '#587B59', /* Soft calming sage green */
+                            500: '#587B59',
                             600: '#466447',
                             700: '#384E39',
                             800: '#2A3B2B',
                             900: '#1C271D',
                         },
                         linen: {
-                            50: '#FCFBF9',  /* Ultra-light airy canvas */
-                            100: '#F7F5F0', /* Soft warm linen card background */
-                            200: '#EDE8E0', /* Gentle, subtle border */
+                            50: '#FCFBF9',
+                            100: '#F7F5F0',
+                            200: '#EDE8E0',
                             300: '#DFD8CC',
                             400: '#9C9385',
                             500: '#756D60',
@@ -58,8 +58,8 @@
                             900: '#171411',
                         },
                         calm: {
-                            holiday: '#B86A55', /* Gentle muted terracotta */
-                            vacation: '#C79A4B', /* Soft sunlit amber */
+                            holiday: '#B86A55',
+                            vacation: '#C79A4B',
                         }
                     }
                 }
@@ -105,20 +105,28 @@
                 </span>
             </div>
 
-            <!-- Controls: Window Slider & Dark Mode -->
-            <div class="flex items-center space-x-2 sm:space-x-4">
+            <!-- Controls: Window Slider, Language Switcher & Dark Mode -->
+            <div class="flex items-center space-x-2 sm:space-x-3">
+                <!-- Navigation Buttons -->
                 <div class="inline-flex rounded-md border border-linen-200 dark:border-[#2C352C] bg-white dark:bg-[#1E241E] p-0.5 shadow-sm" role="group" aria-label="Kalender navigation">
                     <button id="btn-prev-month" aria-label="Forrige måned" class="px-2.5 py-1 text-xs font-medium text-linen-600 dark:text-linen-300 hover:text-sage-600 dark:hover:text-white transition">
-                        ← Forrige
+                        <span data-i18n="prevMonth">← Forrige</span>
                     </button>
                     <button id="btn-today-month" aria-label="Gå til i dag" class="px-2.5 py-1 text-xs font-semibold text-sage-600 dark:text-sage-300 border-x border-linen-200 dark:border-[#2C352C] hover:bg-linen-100 dark:hover:bg-[#283228] transition">
-                        I dag
+                        <span data-i18n="todayBtn">I dag</span>
                     </button>
                     <button id="btn-next-month" aria-label="Næste måned" class="px-2.5 py-1 text-xs font-medium text-linen-600 dark:text-linen-300 hover:text-sage-600 dark:hover:text-white transition">
-                        Næste →
+                        <span data-i18n="nextMonth">Næste →</span>
                     </button>
                 </div>
 
+                <!-- Language Selector Toggle -->
+                <button id="lang-toggle-btn" aria-label="Skift sprog / Switch language" class="px-2.5 py-1 rounded border border-linen-200 dark:border-[#2C352C] bg-white dark:bg-[#1E241E] text-xs font-semibold text-linen-700 dark:text-linen-200 hover:border-sage-400 dark:hover:border-sage-300 transition shadow-sm inline-flex items-center gap-1.5">
+                    <span id="lang-flag">🇩🇰</span>
+                    <span id="lang-code" class="uppercase">DA</span>
+                </button>
+
+                <!-- Theme Toggle Button -->
                 <button id="theme-toggle" aria-label="Skift lys eller mørk tilstand" class="p-2 rounded border border-linen-200 dark:border-[#2C352C] bg-white dark:bg-[#1E241E] text-linen-600 dark:text-linen-300 hover:bg-linen-100 dark:hover:bg-[#283228] transition shadow-sm">
                     <svg id="theme-toggle-dark-icon" class="hidden w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
@@ -137,7 +145,7 @@
         <!-- Focal Point: Det aktuelle ugenummer centreret i rolig nordisk typografi -->
         <section aria-labelledby="current-week-heading" class="border border-linen-200 dark:border-[#272E27] bg-white/70 dark:bg-[#1B201B] rounded-2xl p-8 sm:p-14 text-center shadow-sm backdrop-blur-sm">
             <h1 id="current-week-heading" class="text-6xl sm:text-8xl font-bold tracking-tight text-linen-900 dark:text-linen-50">
-                Uge <span id="hero-week-num" class="text-sage-500 dark:text-sage-300">--</span>
+                <span data-i18n="weekPrefix">Uge</span> <span id="hero-week-num" class="text-sage-500 dark:text-sage-300">--</span>
             </h1>
             <p id="hero-date-str" class="text-lg sm:text-xl text-linen-600 dark:text-linen-300 mt-3 font-medium">
                 --
@@ -149,16 +157,16 @@
             <!-- Tegnforklaring (Legend) -->
             <div class="flex flex-wrap items-center justify-end gap-4 text-xs text-linen-500 dark:text-linen-400 mb-4">
                 <span class="inline-flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded-full bg-sage-500 dark:bg-sage-300"></span> I dag
+                    <span class="w-2.5 h-2.5 rounded-full bg-sage-500 dark:bg-sage-300"></span> <span data-i18n="legendToday">I dag</span>
                 </span>
                 <span class="inline-flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded bg-calm-holiday/20 border border-calm-holiday text-calm-holiday inline-block"></span> Helligdag
+                    <span class="w-2.5 h-2.5 rounded bg-calm-holiday/20 border border-calm-holiday text-calm-holiday inline-block"></span> <span data-i18n="legendHoliday">Helligdag</span>
                 </span>
                 <span class="inline-flex items-center gap-1.5">
-                    <span class="w-2.5 h-2.5 rounded bg-calm-vacation/20 border border-calm-vacation text-calm-vacation inline-block"></span> Skoleferie
+                    <span class="w-2.5 h-2.5 rounded bg-calm-vacation/20 border border-calm-vacation text-calm-vacation inline-block"></span> <span data-i18n="legendVacation">Skoleferie</span>
                 </span>
                 <span class="inline-flex items-center gap-1.5 text-linen-400">
-                    <span class="w-2.5 h-2.5 rounded border border-dashed border-sage-500 text-[9px] flex items-center justify-center font-bold">✎</span> Klik dato
+                    <span class="w-2.5 h-2.5 rounded border border-dashed border-sage-500 text-[9px] flex items-center justify-center font-bold">✎</span> <span data-i18n="legendClick">Klik dato</span>
                 </span>
             </div>
 
@@ -167,7 +175,7 @@
                 <!-- Dynamisk genereret via JavaScript -->
             </div>
 
-            <!-- BOKS UNDER KALENDEREN: Vejledning på dansk -->
+            <!-- BOKS UNDER KALENDEREN: Vejledning -->
             <aside aria-label="Vejledning til oprettelse af kalenderaftaler" class="border border-linen-200 dark:border-[#272E27] bg-white/70 dark:bg-[#1B201B] rounded-2xl p-6 sm:p-7 shadow-sm">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-linen-200 dark:border-[#272E27] mb-5">
                     <div>
@@ -175,15 +183,15 @@
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                             </svg>
-                            Opret Aftaler Direkte i Kalenderen
+                            <span data-i18n="guideBadge">Opret Aftaler Direkte i Kalenderen</span>
                         </div>
-                        <h3 class="text-lg font-bold text-linen-800 dark:text-linen-50">
+                        <h3 class="text-lg font-bold text-linen-800 dark:text-linen-50" data-i18n="guideHeading">
                             Sådan opretter og sender du en kalenderinvitation
                         </h3>
                     </div>
                     <div class="inline-flex items-center gap-1.5 text-xs text-linen-400 dark:text-linen-400">
                         <span class="text-sage-500 dark:text-sage-300 font-bold">✓</span>
-                        <span>100% lokalt &amp; fortroligt – ingen data gemmes</span>
+                        <span data-i18n="guidePrivacy">100% lokalt &amp; fortroligt – ingen data gemmes</span>
                     </div>
                 </div>
 
@@ -191,32 +199,32 @@
                     <div class="flex items-start gap-3">
                         <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage-500/10 text-sage-600 dark:bg-sage-400/20 dark:text-sage-300 font-bold flex items-center justify-center text-xs">1</span>
                         <div>
-                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5">Vælg en dato</strong>
-                            <span>Klik på en vilkårlig dato i de tre måneder ovenfor.</span>
+                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5" data-i18n="step1Title">Vælg en dato</strong>
+                            <span data-i18n="step1Desc">Klik på en vilkårlig dato i de tre måneder ovenfor.</span>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
                         <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage-500/10 text-sage-600 dark:bg-sage-400/20 dark:text-sage-300 font-bold flex items-center justify-center text-xs">2</span>
                         <div>
-                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5">Udfyld aftalen</strong>
-                            <span>Indtast overskrift, tidsrum, sted og eventuelt formål/dagsorden.</span>
+                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5" data-i18n="step2Title">Udfyld aftalen</strong>
+                            <span data-i18n="step2Desc">Indtast overskrift, tidsrum, sted og eventuelt formål/dagsorden.</span>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
                         <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage-500/10 text-sage-600 dark:bg-sage-400/20 dark:text-sage-300 font-bold flex items-center justify-center text-xs">3</span>
                         <div>
-                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5">Eksporter .ICS-fil</strong>
-                            <span>Standard kalenderfil downloades klar til Outlook, Apple Kalender eller Google.</span>
+                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5" data-i18n="step3Title">Eksporter .ICS-fil</strong>
+                            <span data-i18n="step3Desc">Standard kalenderfil downloades klar til Outlook, Apple Kalender eller Google.</span>
                         </div>
                     </div>
 
                     <div class="flex items-start gap-3">
                         <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage-500/10 text-sage-600 dark:bg-sage-400/20 dark:text-sage-300 font-bold flex items-center justify-center text-xs">4</span>
                         <div>
-                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5">Send invitation</strong>
-                            <span>Angiv modtagerens mail for automatisk klargøring i dit mailprogram.</span>
+                            <strong class="text-linen-800 dark:text-linen-100 block mb-0.5" data-i18n="step4Title">Send invitation</strong>
+                            <span data-i18n="step4Desc">Angiv modtagerens mail for automatisk klargøring i dit mailprogram.</span>
                         </div>
                     </div>
                 </div>
@@ -225,7 +233,7 @@
 
         <!-- Detaljeret oversigt over mærkedage og ferier i vinduet -->
         <section aria-labelledby="period-events-heading" class="border-t border-linen-200 dark:border-[#272E27] pt-8">
-            <h3 id="period-events-heading" class="text-lg font-bold tracking-tight text-linen-800 dark:text-linen-50 mb-4">
+            <h3 id="period-events-heading" class="text-lg font-bold tracking-tight text-linen-800 dark:text-linen-50 mb-4" data-i18n="eventsHeading">
                 Helligdage &amp; Ferier i denne periode
             </h3>
             <div id="period-events-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
@@ -240,8 +248,8 @@
         <div class="p-6 sm:p-8">
             <div class="flex items-center justify-between pb-4 border-b border-linen-200 dark:border-[#2D352D]">
                 <div>
-                    <span class="text-xs font-semibold uppercase tracking-wider text-sage-600 dark:text-sage-300 block">Opret Kalenderaftale</span>
-                    <h3 id="dialog-title" class="text-xl font-bold text-linen-800 dark:text-linen-50">Opret begivenhed</h3>
+                    <span class="text-xs font-semibold uppercase tracking-wider text-sage-600 dark:text-sage-300 block" data-i18n="modalSub">Opret Kalenderaftale</span>
+                    <h3 id="dialog-title" class="text-xl font-bold text-linen-800 dark:text-linen-50" data-i18n="modalHeading">Opret begivenhed</h3>
                 </div>
                 <button type="button" id="dialog-close-btn" aria-label="Luk dialog" class="text-linen-400 hover:text-linen-700 dark:hover:text-white p-1 rounded">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -253,7 +261,7 @@
             <form id="event-form" class="mt-6 flex flex-col gap-4">
                 <!-- Dato & Ugenr Info Banner -->
                 <div class="p-3 bg-linen-100 dark:bg-[#232B23] rounded-xl border border-linen-200 dark:border-[#2D352D] flex items-center justify-between text-xs">
-                    <span class="font-medium text-linen-600 dark:text-linen-300">Valgt dato: <strong id="modal-selected-date-str" class="text-linen-800 dark:text-white">--</strong></span>
+                    <span class="font-medium text-linen-600 dark:text-linen-300"><span data-i18n="modalDateLabel">Valgt dato:</span> <strong id="modal-selected-date-str" class="text-linen-800 dark:text-white">--</strong></span>
                     <span id="modal-selected-week-str" class="px-2 py-0.5 rounded-full bg-sage-500 text-white font-mono text-[10px] font-bold">Uge --</span>
                 </div>
                 <input type="hidden" id="event-date">
@@ -261,14 +269,14 @@
                 <!-- 1. Headline (Titel) -->
                 <div>
                     <label for="event-headline" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
-                        Overskrift <span class="text-calm-holiday">*</span>
+                        <span data-i18n="labelHeadline">Overskrift</span> <span class="text-calm-holiday">*</span>
                     </label>
                     <input type="text" id="event-headline" required placeholder="F.eks. Projektmøde eller Kaffeaftale" class="w-full px-3.5 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
                 </div>
 
                 <!-- 2. Location (Sted) -->
                 <div>
-                    <label for="event-location" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
+                    <label for="event-location" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5" data-i18n="labelLocation">
                         Sted
                     </label>
                     <input type="text" id="event-location" placeholder="F.eks. Kontoret, Mødelokale 2 eller Online / Teams" class="w-full px-3.5 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
@@ -277,13 +285,13 @@
                 <!-- 3. Time (Start / Slut) -->
                 <div class="grid grid-cols-2 gap-3">
                     <div>
-                        <label for="event-start-time" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
+                        <label for="event-start-time" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5" data-i18n="labelStartTime">
                             Starttidspunkt
                         </label>
                         <input type="time" id="event-start-time" value="09:00" class="w-full px-3 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
                     </div>
                     <div>
-                        <label for="event-end-time" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
+                        <label for="event-end-time" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5" data-i18n="labelEndTime">
                             Sluttidspunkt
                         </label>
                         <input type="time" id="event-end-time" value="10:00" class="w-full px-3 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
@@ -292,7 +300,7 @@
 
                 <!-- 4. Purpose (Formål / Beskrivelse) -->
                 <div>
-                    <label for="event-purpose" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
+                    <label for="event-purpose" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5" data-i18n="labelPurpose">
                         Formål &amp; Beskrivelse
                     </label>
                     <textarea id="event-purpose" rows="3" placeholder="Kort dagsorden, formål eller forberedelse..." class="w-full px-3.5 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400"></textarea>
@@ -300,25 +308,25 @@
 
                 <!-- 5. Modtager E-mailadresse -->
                 <div>
-                    <label for="event-email" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5">
+                    <label for="event-email" class="block text-xs font-semibold uppercase tracking-wider text-linen-600 dark:text-linen-300 mb-1.5" data-i18n="labelEmail">
                         Send invitation til (E-mailadresse)
                     </label>
                     <input type="email" id="event-email" placeholder="kollega@virksomhed.dk" class="w-full px-3.5 py-2 text-sm rounded-xl border border-linen-200 dark:border-[#333C33] bg-white dark:bg-[#141714] text-linen-800 dark:text-linen-50 focus:outline-none focus:ring-2 focus:ring-sage-400">
-                    <p class="text-[11px] text-linen-400 mt-1">
+                    <p class="text-[11px] text-linen-400 mt-1" data-i18n="labelEmailHint">
                         Downloader en officiel .ics-fil og klargør en e-mail i dit mailprogram klar til at sende.
                     </p>
                 </div>
 
                 <!-- Handlinger -->
                 <div class="mt-4 pt-4 border-t border-linen-200 dark:border-[#2D352D] flex flex-col-reverse sm:flex-row items-center justify-end gap-3">
-                    <button type="button" id="dialog-cancel-btn" class="w-full sm:w-auto px-4 py-2 text-xs font-semibold uppercase tracking-wider text-linen-500 hover:text-linen-800 dark:hover:text-white transition">
+                    <button type="button" id="dialog-cancel-btn" class="w-full sm:w-auto px-4 py-2 text-xs font-semibold uppercase tracking-wider text-linen-500 hover:text-linen-800 dark:hover:text-white transition" data-i18n="btnCancel">
                         Annuller
                     </button>
                     <button type="submit" class="w-full sm:w-auto inline-flex items-center justify-center px-5 py-2.5 rounded-xl text-xs font-semibold uppercase tracking-wider text-white bg-sage-500 hover:bg-sage-600 dark:bg-sage-600 dark:hover:bg-sage-500 transition shadow-sm">
                         <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
                         </svg>
-                        Download .ICS &amp; Send Mail
+                        <span data-i18n="btnSubmit">Download .ICS &amp; Send Mail</span>
                     </button>
                 </div>
             </form>
@@ -329,88 +337,251 @@
     <footer class="border-t border-linen-200 dark:border-[#272E27] bg-white/50 dark:bg-[#131613] py-8 text-xs text-linen-400">
         <div class="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
             <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
-                <p>© 2026 DinUge.dk — Nordisk enkelhed og ugekalender.</p>
+                <p data-i18n="footerCopy">© 2026 DinUge.dk — Nordisk enkelhed og ugekalender.</p>
                 <span class="hidden sm:inline text-linen-200 dark:text-linen-700">•</span>
-                <p class="text-linen-500 dark:text-linen-400">Drevet med fokus på funktion og lavt energiforbrug.</p>
+                <p class="text-linen-500 dark:text-linen-400" data-i18n="footerTagline">Drevet med fokus på funktion og lavt energiforbrug.</p>
             </div>
 
             <!-- Buy Me a Coffee Support Link -->
             <a href="https://buymeacoffee.com/grakan" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-linen-200 dark:border-[#2C352C] bg-white dark:bg-[#1A221A] text-linen-700 dark:text-linen-200 hover:text-sage-600 dark:hover:text-white hover:border-sage-400 dark:hover:border-sage-300 transition shadow-sm font-medium">
                 <span class="text-base" aria-hidden="true">☕</span>
-                <span>Støt siden via Buy Me a Coffee</span>
+                <span data-i18n="supportBtn">Støt siden via Buy Me a Coffee</span>
             </a>
         </div>
     </footer>
 
-    <!-- Logik: ISO 8601, Sliding 3 Months, Danske Helligdage, Ferier & .ICS Generator -->
+    <!-- I18N + Kalender Logik -->
     <script>
-        const DANISH_MONTHS = [
-            'Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni',
-            'Juli', 'August', 'September', 'Oktober', 'November', 'December'
-        ];
-        const DANISH_DAYS_SHORT = ['Uge', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø', 'Sø'];
-
-        // Faste og beregnede danske helligdage (2025 - 2027 dækning)
-        const HOLIDAYS = {
-            // 2026
-            '2026-01-01': 'Nytårsdag',
-            '2026-04-02': 'Skærtorsdag',
-            '2026-04-03': 'Langfredag',
-            '2026-04-05': 'Påskedag',
-            '2026-04-06': '2. Påskedag',
-            '2026-05-14': 'Kristi Himmelfartsdag',
-            '2026-05-24': 'Pinsedag',
-            '2026-05-25': '2. Pinsedag',
-            '2026-06-05': 'Grundlovsdag',
-            '2026-12-24': 'Juleaftensdag',
-            '2026-12-25': '1. Juledag',
-            '2026-12-26': '2. Juledag',
-            '2026-12-31': 'Nytårsaften',
-
-            // 2025
-            '2025-01-01': 'Nytårsdag',
-            '2025-04-17': 'Skærtorsdag',
-            '2025-04-18': 'Langfredag',
-            '2025-04-20': 'Påskedag',
-            '2025-04-21': '2. Påskedag',
-            '2025-05-29': 'Kristi Himmelfartsdag',
-            '2025-06-08': 'Pinsedag',
-            '2025-06-09': '2. Pinsedag',
-            '2025-06-05': 'Grundlovsdag',
-            '2025-12-24': 'Juleaftensdag',
-            '2025-12-25': '1. Juledag',
-            '2025-12-26': '2. Juledag',
-
-            // 2027
-            '2027-01-01': 'Nytårsdag',
-            '2027-03-25': 'Skærtorsdag',
-            '2027-03-26': 'Langfredag',
-            '2027-03-28': 'Påskedag',
-            '2027-03-29': '2. Påskedag',
-            '2027-05-06': 'Kristi Himmelfartsdag',
-            '2027-05-16': 'Pinsedag',
-            '2027-05-17': '2. Pinsedag',
-            '2027-06-05': 'Grundlovsdag',
-            '2027-12-24': 'Juleaftensdag',
-            '2027-12-25': '1. Juledag',
-            '2027-12-26': '2. Juledag'
+        const TRANSLATIONS = {
+            da: {
+                flag: '🇩🇰',
+                code: 'DA',
+                weekPrefix: 'Uge',
+                prevMonth: '← Forrige',
+                todayBtn: 'I dag',
+                nextMonth: 'Næste →',
+                legendToday: 'I dag',
+                legendHoliday: 'Helligdag',
+                legendVacation: 'Skoleferie',
+                legendClick: 'Klik dato',
+                guideBadge: 'Opret Aftaler Direkte i Kalenderen',
+                guideHeading: 'Sådan opretter og sender du en kalenderinvitation',
+                guidePrivacy: '100% lokalt & fortroligt – ingen data gemmes',
+                step1Title: 'Vælg en dato',
+                step1Desc: 'Klik på en vilkårlig dato i de tre måneder ovenfor.',
+                step2Title: 'Udfyld aftalen',
+                step2Desc: 'Indtast overskrift, tidsrum, sted og eventuelt formål/dagsorden.',
+                step3Title: 'Eksporter .ICS-fil',
+                step3Desc: 'Standard kalenderfil downloades klar til Outlook, Apple Kalender eller Google.',
+                step4Title: 'Send invitation',
+                step4Desc: 'Angiv modtagerens mail for automatisk klargøring i dit mailprogram.',
+                eventsHeading: 'Helligdage & Ferier i denne periode',
+                noEvents: 'Ingen særlige helligdage eller faste skoleferier i dette vindue.',
+                modalSub: 'Opret Kalenderaftale',
+                modalHeading: 'Opret begivenhed',
+                modalDateLabel: 'Valgt dato:',
+                labelHeadline: 'Overskrift',
+                phHeadline: 'F.eks. Projektmøde eller Kaffeaftale',
+                labelLocation: 'Sted',
+                phLocation: 'F.eks. Kontoret, Mødelokale 2 eller Online / Teams',
+                labelStartTime: 'Starttidspunkt',
+                labelEndTime: 'Sluttidspunkt',
+                labelPurpose: 'Formål & Beskrivelse',
+                phPurpose: 'Kort dagsorden, formål eller forberedelse...',
+                labelEmail: 'Send invitation til (E-mailadresse)',
+                phEmail: 'kollega@virksomhed.dk',
+                labelEmailHint: 'Downloader en officiel .ics-fil og klargør en e-mail i dit mailprogram klar til at sende.',
+                btnCancel: 'Annuller',
+                btnSubmit: 'Download .ICS & Send Mail',
+                footerCopy: '© 2026 DinUge.dk — Nordisk enkelhed og ugekalender.',
+                footerTagline: 'Drevet med fokus på funktion og lavt energiforbrug.',
+                supportBtn: 'Støt siden via Buy Me a Coffee',
+                copiedWeek: 'Kopieret: Uge {w}!',
+                emailSubject: 'Kalenderinvitation: {headline} ({date})',
+                emailGreeting: 'Hej,\n\nDu er inviteret til: {headline}\nDato: {date}\nTidspunkt: {start} - {end}\n{location}\n{purpose}\n\n(Vedhæft venligst den downloadede .ics kalenderfil fra mappen Overførsler)\n\nVenlig hilsen,\nOprettet via DinUge.dk',
+                months: ['Januar', 'Februar', 'Marts', 'April', 'Maj', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'December'],
+                daysShort: ['Uge', 'Ma', 'Ti', 'On', 'To', 'Fr', 'Lø', 'Sø'],
+                daysFull: ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag']
+            },
+            en: {
+                flag: '🇬🇧',
+                code: 'EN',
+                weekPrefix: 'Week',
+                prevMonth: '← Previous',
+                todayBtn: 'Today',
+                nextMonth: 'Next →',
+                legendToday: 'Today',
+                legendHoliday: 'Holiday',
+                legendVacation: 'School Break',
+                legendClick: 'Click date',
+                guideBadge: 'Create Events Directly from Calendar',
+                guideHeading: 'How to create and send a calendar invitation',
+                guidePrivacy: '100% private & local – no data is stored',
+                step1Title: 'Select a date',
+                step1Desc: 'Click any date in the 3 calendar months above.',
+                step2Title: 'Fill in details',
+                step2Desc: 'Enter headline, time, location, and purpose/agenda.',
+                step3Title: 'Export .ICS file',
+                step3Desc: 'Standard calendar file downloads instantly for Outlook, Apple Calendar, or Google.',
+                step4Title: 'Send invite',
+                step4Desc: 'Optionally add an email to compose a ready-to-send invite in your email app.',
+                eventsHeading: 'Holidays & Vacations in this period',
+                noEvents: 'No public holidays or fixed school breaks in this window.',
+                modalSub: 'Create Calendar Event',
+                modalHeading: 'Create event',
+                modalDateLabel: 'Selected date:',
+                labelHeadline: 'Headline',
+                phHeadline: 'E.g. Project Review or Coffee Chat',
+                labelLocation: 'Location',
+                phLocation: 'E.g. Office, Room 2, or Online / Teams',
+                labelStartTime: 'Start Time',
+                labelEndTime: 'End Time',
+                labelPurpose: 'Purpose & Description',
+                phPurpose: 'Agenda, notes, or preparation points...',
+                labelEmail: 'Send invite to (Email Address)',
+                phEmail: 'colleague@company.com',
+                labelEmailHint: 'Downloads an official .ics file and drafts an email in your mail app ready to send.',
+                btnCancel: 'Cancel',
+                btnSubmit: 'Download .ICS & Send Mail',
+                footerCopy: '© 2026 DinUge.dk — Nordic simplicity & week calendar.',
+                footerTagline: 'Designed for high utility with low energy footprint.',
+                supportBtn: 'Support via Buy Me a Coffee',
+                copiedWeek: 'Copied: Week {w}!',
+                emailSubject: 'Calendar Invitation: {headline} ({date})',
+                emailGreeting: 'Hi,\n\nYou are invited to: {headline}\nDate: {date}\nTime: {start} - {end}\n{location}\n{purpose}\n\n(Please attach the downloaded .ics calendar file from your Downloads folder)\n\nBest regards,\nCreated via DinUge.dk',
+                months: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                daysShort: ['Wk', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+                daysFull: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+            }
         };
 
-        // Typiske danske skoleferie-intervaller
-        const SCHOOL_VACATIONS = [
-            { name: 'Vinterferie (Uge 7)', start: '2026-02-09', end: '2026-02-15' },
-            { name: 'Påskeferie', start: '2026-03-30', end: '2026-04-06' },
-            { name: 'Sommerferie', start: '2026-06-27', end: '2026-08-09' },
-            { name: 'Efterårsferie (Uge 42)', start: '2026-10-10', end: '2026-10-18' },
-            { name: 'Juleferie', start: '2026-12-21', end: '2027-01-03' },
+        // Determine user language based on browser locale or localStorage
+        function getInitialLocale() {
+            const saved = localStorage.getItem('site_locale');
+            if (saved && (saved === 'da' || saved === 'en')) return saved;
+            
+            // Inspect navigator languages list (browser locale)
+            const navLangs = navigator.languages || [navigator.language || navigator.userLanguage || 'da'];
+            for (const lang of navLangs) {
+                const lower = lang.toLowerCase();
+                if (lower.startsWith('da')) return 'da';
+                if (lower.startsWith('en')) return 'en';
+            }
+            // Default to English for international visitors, Danish if in Scandinavian context
+            const primary = (navigator.language || 'en').toLowerCase();
+            return primary.startsWith('da') || primary.startsWith('no') || primary.startsWith('sv') ? 'da' : 'en';
+        }
 
-            // 2025
-            { name: 'Vinterferie (Uge 7)', start: '2025-02-10', end: '2025-02-16' },
-            { name: 'Påskeferie', start: '2025-04-14', end: '2025-04-21' },
-            { name: 'Sommerferie', start: '2025-06-28', end: '2025-08-10' },
-            { name: 'Efterårsferie (Uge 42)', start: '2025-10-11', end: '2025-10-19' },
-            { name: 'Juleferie', start: '2025-12-20', end: '2026-01-04' }
-        ];
+        let currentLocale = getInitialLocale();
+
+        // Danish Holidays in Danish and English
+        const HOLIDAYS_BY_LANG = {
+            da: {
+                '2026-01-01': 'Nytårsdag',
+                '2026-04-02': 'Skærtorsdag',
+                '2026-04-03': 'Langfredag',
+                '2026-04-05': 'Påskedag',
+                '2026-04-06': '2. Påskedag',
+                '2026-05-14': 'Kristi Himmelfartsdag',
+                '2026-05-24': 'Pinsedag',
+                '2026-05-25': '2. Pinsedag',
+                '2026-06-05': 'Grundlovsdag',
+                '2026-12-24': 'Juleaftensdag',
+                '2026-12-25': '1. Juledag',
+                '2026-12-26': '2. Juledag',
+                '2026-12-31': 'Nytårsaften',
+                '2025-01-01': 'Nytårsdag',
+                '2025-04-17': 'Skærtorsdag',
+                '2025-04-18': 'Langfredag',
+                '2025-04-20': 'Påskedag',
+                '2025-04-21': '2. Påskedag',
+                '2025-05-29': 'Kristi Himmelfartsdag',
+                '2025-06-08': 'Pinsedag',
+                '2025-06-09': '2. Pinsedag',
+                '2025-06-05': 'Grundlovsdag',
+                '2025-12-24': 'Juleaftensdag',
+                '2025-12-25': '1. Juledag',
+                '2025-12-26': '2. Juledag',
+                '2027-01-01': 'Nytårsdag',
+                '2027-03-25': 'Skærtorsdag',
+                '2027-03-26': 'Langfredag',
+                '2027-03-28': 'Påskedag',
+                '2027-03-29': '2. Påskedag',
+                '2027-05-06': 'Kristi Himmelfartsdag',
+                '2027-05-16': 'Pinsedag',
+                '2027-05-17': '2. Pinsedag',
+                '2027-06-05': 'Grundlovsdag',
+                '2027-12-24': 'Juleaftensdag',
+                '2027-12-25': '1. Juledag',
+                '2027-12-26': '2. Juledag'
+            },
+            en: {
+                '2026-01-01': "New Year's Day",
+                '2026-04-02': 'Maundy Thursday',
+                '2026-04-03': 'Good Friday',
+                '2026-04-05': 'Easter Sunday',
+                '2026-04-06': 'Easter Monday',
+                '2026-05-14': 'Ascension Day',
+                '2026-05-24': 'Whit Sunday',
+                '2026-05-25': 'Whit Monday',
+                '2026-06-05': 'Constitution Day',
+                '2026-12-24': 'Christmas Eve',
+                '2026-12-25': 'Christmas Day',
+                '2026-12-26': '2nd Day of Christmas (Boxing Day)',
+                '2026-12-31': "New Year's Eve",
+                '2025-01-01': "New Year's Day",
+                '2025-04-17': 'Maundy Thursday',
+                '2025-04-18': 'Good Friday',
+                '2025-04-20': 'Easter Sunday',
+                '2025-04-21': 'Easter Monday',
+                '2025-05-29': 'Ascension Day',
+                '2025-06-08': 'Whit Sunday',
+                '2025-06-09': 'Whit Monday',
+                '2025-06-05': 'Constitution Day',
+                '2025-12-24': 'Christmas Eve',
+                '2025-12-25': 'Christmas Day',
+                '2025-12-26': '2nd Day of Christmas',
+                '2027-01-01': "New Year's Day",
+                '2027-03-25': 'Maundy Thursday',
+                '2027-03-26': 'Good Friday',
+                '2027-03-28': 'Easter Sunday',
+                '2027-03-29': 'Easter Monday',
+                '2027-05-06': 'Ascension Day',
+                '2027-05-16': 'Whit Sunday',
+                '2027-05-17': 'Whit Monday',
+                '2027-06-05': 'Constitution Day',
+                '2027-12-24': 'Christmas Eve',
+                '2027-12-25': 'Christmas Day',
+                '2027-12-26': '2nd Day of Christmas'
+            }
+        };
+
+        const SCHOOL_VACATIONS_BY_LANG = {
+            da: [
+                { name: 'Vinterferie (Uge 7)', start: '2026-02-09', end: '2026-02-15' },
+                { name: 'Påskeferie', start: '2026-03-30', end: '2026-04-06' },
+                { name: 'Sommerferie', start: '2026-06-27', end: '2026-08-09' },
+                { name: 'Efterårsferie (Uge 42)', start: '2026-10-10', end: '2026-10-18' },
+                { name: 'Juleferie', start: '2026-12-21', end: '2027-01-03' },
+                { name: 'Vinterferie (Uge 7)', start: '2025-02-10', end: '2025-02-16' },
+                { name: 'Påskeferie', start: '2025-04-14', end: '2025-04-21' },
+                { name: 'Sommerferie', start: '2025-06-28', end: '2025-08-10' },
+                { name: 'Efterårsferie (Uge 42)', start: '2025-10-11', end: '2025-10-19' },
+                { name: 'Juleferie', start: '2025-12-20', end: '2026-01-04' }
+            ],
+            en: [
+                { name: 'Winter Break (Week 7)', start: '2026-02-09', end: '2026-02-15' },
+                { name: 'Easter Break', start: '2026-03-30', end: '2026-04-06' },
+                { name: 'Summer Holiday', start: '2026-06-27', end: '2026-08-09' },
+                { name: 'Autumn Break (Week 42)', start: '2026-10-10', end: '2026-10-18' },
+                { name: 'Christmas Holiday', start: '2026-12-21', end: '2027-01-03' },
+                { name: 'Winter Break (Week 7)', start: '2025-02-10', end: '2025-02-16' },
+                { name: 'Easter Break', start: '2025-04-14', end: '2025-04-21' },
+                { name: 'Summer Holiday', start: '2025-06-28', end: '2025-08-10' },
+                { name: 'Autumn Break (Week 42)', start: '2025-10-11', end: '2025-10-19' },
+                { name: 'Christmas Holiday', start: '2025-12-20', end: '2026-01-04' }
+            ]
+        };
 
         function getISOWeekNumber(d) {
             const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
@@ -428,7 +599,8 @@
         }
 
         function getVacationName(isoDateStr) {
-            for (const vac of SCHOOL_VACATIONS) {
+            const list = SCHOOL_VACATIONS_BY_LANG[currentLocale] || SCHOOL_VACATIONS_BY_LANG.da;
+            for (const vac of list) {
                 if (isoDateStr >= vac.start && isoDateStr <= vac.end) {
                     return vac.name;
                 }
@@ -439,12 +611,44 @@
         const now = new Date();
         let monthOffset = 0;
 
+        function applyI18nTexts() {
+            const t = TRANSLATIONS[currentLocale];
+            document.documentElement.lang = currentLocale;
+
+            // Flag and code
+            document.getElementById('lang-flag').textContent = t.flag;
+            document.getElementById('lang-code').textContent = t.code;
+
+            // Dynamic text bindings
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (t[key]) {
+                    el.innerHTML = t[key];
+                }
+            });
+
+            // Input placeholders
+            document.getElementById('event-headline').placeholder = t.phHeadline;
+            document.getElementById('event-location').placeholder = t.phLocation;
+            document.getElementById('event-purpose').placeholder = t.phPurpose;
+            document.getElementById('event-email').placeholder = t.phEmail;
+        }
+
         function updateHero() {
+            const t = TRANSLATIONS[currentLocale];
             const currentWeek = getISOWeekNumber(now);
-            const danishDayName = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'][now.getDay()];
+            const dayName = t.daysFull[now.getDay()];
+            const monthName = t.months[now.getMonth()];
+
             document.getElementById('hero-week-num').textContent = currentWeek;
-            document.getElementById('hero-date-str').textContent = 
-                `${danishDayName} ${now.getDate()}. ${DANISH_MONTHS[now.getMonth()].toLowerCase()} ${now.getFullYear()}`;
+            
+            if (currentLocale === 'en') {
+                document.getElementById('hero-date-str').textContent = 
+                    `${dayName}, ${monthName} ${now.getDate()}, ${now.getFullYear()}`;
+            } else {
+                document.getElementById('hero-date-str').textContent = 
+                    `${dayName} ${now.getDate()}. ${monthName.toLowerCase()} ${now.getFullYear()}`;
+            }
         }
 
         // Dialog Handlers
@@ -454,14 +658,19 @@
         const eventForm = document.getElementById('event-form');
 
         function openEventModal(isoDateStr, weekNum) {
+            const t = TRANSLATIONS[currentLocale];
             const dParts = isoDateStr.split('-');
             const year = parseInt(dParts[0]);
             const monthIdx = parseInt(dParts[1]) - 1;
             const dayNum = parseInt(dParts[2]);
 
             document.getElementById('event-date').value = isoDateStr;
-            document.getElementById('modal-selected-date-str').textContent = `${dayNum}. ${DANISH_MONTHS[monthIdx]} ${year}`;
-            document.getElementById('modal-selected-week-str').textContent = `Uge ${weekNum}`;
+            const dateStrFormatted = currentLocale === 'en'
+                ? `${t.months[monthIdx]} ${dayNum}, ${year}`
+                : `${dayNum}. ${t.months[monthIdx]} ${year}`;
+
+            document.getElementById('modal-selected-date-str').textContent = dateStrFormatted;
+            document.getElementById('modal-selected-week-str').textContent = `${t.weekPrefix} ${weekNum}`;
             document.getElementById('event-headline').value = '';
             document.getElementById('event-location').value = '';
             document.getElementById('event-purpose').value = '';
@@ -481,6 +690,8 @@
 
         // 3-Month Window Rendering
         function renderThreeMonthsWindow() {
+            const t = TRANSLATIONS[currentLocale];
+            const holidays = HOLIDAYS_BY_LANG[currentLocale] || HOLIDAYS_BY_LANG.da;
             const container = document.getElementById('three-months-container');
             container.innerHTML = '';
 
@@ -499,7 +710,7 @@
                 const monthHeader = document.createElement('div');
                 monthHeader.className = 'flex justify-between items-center mb-4 pb-2 border-b border-linen-100 dark:border-[#272E27]';
                 monthHeader.innerHTML = `
-                    <h3 class="font-semibold text-base text-linen-800 dark:text-linen-50">${DANISH_MONTHS[month]} ${year}</h3>
+                    <h3 class="font-semibold text-base text-linen-800 dark:text-linen-50">${t.months[month]} ${year}</h3>
                 `;
                 monthCard.appendChild(monthHeader);
 
@@ -508,7 +719,7 @@
 
                 const headerRow = document.createElement('div');
                 headerRow.className = 'grid grid-cols-8 gap-1 text-center font-medium text-linen-400 dark:text-linen-400 pb-2 border-b border-linen-100 dark:border-[#272E27] text-[11px]';
-                DANISH_DAYS_SHORT.forEach(d => {
+                t.daysShort.forEach(d => {
                     const span = document.createElement('span');
                     span.textContent = d;
                     headerRow.appendChild(span);
@@ -531,7 +742,7 @@
                     const weekNum = getISOWeekNumber(weekSampleDate);
                     const weekNumCol = document.createElement('span');
                     weekNumCol.className = 'font-mono text-[10px] text-sage-600 dark:text-sage-300 font-semibold bg-linen-100 dark:bg-[#252E25] py-0.5 rounded-md';
-                    weekNumCol.textContent = `U${weekNum}`;
+                    weekNumCol.textContent = `W${weekNum}`;
                     weekRow.appendChild(weekNumCol);
 
                     for (let dayIndex = 1; dayIndex <= 7; dayIndex++) {
@@ -543,7 +754,7 @@
                         } else {
                             const thisDate = new Date(year, month, currentDay);
                             const isoStr = formatISODate(thisDate);
-                            const holidayName = HOLIDAYS[isoStr];
+                            const holidayName = holidays[isoStr];
                             const vacationName = getVacationName(isoStr);
 
                             const isToday = (
@@ -554,7 +765,7 @@
 
                             const dayBtn = document.createElement('button');
                             dayBtn.type = 'button';
-                            dayBtn.setAttribute('aria-label', `Opret aftale ${currentDay}. ${DANISH_MONTHS[month]} ${year}`);
+                            dayBtn.setAttribute('aria-label', `${currentDay}. ${t.months[month]} ${year}`);
                             
                             let baseClasses = 'w-full py-1 text-xs rounded-lg text-center relative flex flex-col items-center justify-center min-h-[28px] transition hover:ring-1 hover:ring-sage-400 focus:outline-none focus:ring-2 focus:ring-sage-400 ';
                             
@@ -563,12 +774,12 @@
                             } else if (holidayName) {
                                 baseClasses += 'bg-calm-holiday/15 text-calm-holiday dark:text-red-300 font-semibold rounded-lg ';
                                 if (!eventsFound.find(e => e.date === isoStr)) {
-                                    eventsFound.push({ date: isoStr, name: holidayName, type: 'Helligdag', uge: weekNum });
+                                    eventsFound.push({ date: isoStr, name: holidayName, type: t.legendHoliday, uge: weekNum });
                                 }
                             } else if (vacationName) {
                                 baseClasses += 'bg-calm-vacation/15 text-calm-vacation dark:text-amber-200 rounded-lg ';
                                 if (!eventsFound.find(e => e.name === vacationName)) {
-                                    eventsFound.push({ date: isoStr, name: vacationName, type: 'Skoleferie', uge: weekNum });
+                                    eventsFound.push({ date: isoStr, name: vacationName, type: t.legendVacation, uge: weekNum });
                                 }
                             } else if (dayIndex >= 6) {
                                 baseClasses += 'text-linen-400 dark:text-linen-400 hover:text-linen-700 dark:hover:text-linen-100 ';
@@ -577,10 +788,9 @@
                             }
 
                             dayBtn.className = baseClasses;
-                            dayBtn.title = holidayName ? `${holidayName} (Klik for aftale)` : (vacationName ? `${vacationName} (Klik for aftale)` : 'Klik for at oprette aftale');
+                            dayBtn.title = holidayName || vacationName || t.legendClick;
                             dayBtn.textContent = currentDay;
 
-                            // Click handler to open dialog
                             const targetIso = isoStr;
                             const targetWeek = weekNum;
                             dayBtn.addEventListener('click', () => {
@@ -600,27 +810,39 @@
 
             // Period Events summary list
             if (eventsFound.length === 0) {
-                eventsList.innerHTML = '<p class="text-xs text-sand-400 italic">Ingen særlige helligdage eller faste skoleferier i dette vindue.</p>';
+                eventsList.innerHTML = `<p class="text-xs text-linen-400 italic">${t.noEvents}</p>`;
             } else {
                 eventsFound.sort((a,b) => a.date.localeCompare(b.date));
                 eventsFound.forEach(ev => {
                     const dParts = ev.date.split('-');
-                    const dayStr = `${parseInt(dParts[2])}. ${DANISH_MONTHS[parseInt(dParts[1]) - 1]}`;
+                    const dayFormatted = currentLocale === 'en'
+                        ? `${t.months[parseInt(dParts[1]) - 1]} ${parseInt(dParts[2])}`
+                        : `${parseInt(dParts[2])}. ${t.months[parseInt(dParts[1]) - 1]}`;
+
                     const item = document.createElement('div');
                     item.className = 'border border-linen-200 dark:border-[#272E27] bg-white/80 dark:bg-[#1B201B] p-3 rounded-xl flex items-center justify-between shadow-sm';
                     item.innerHTML = `
                         <div class="flex items-center space-x-2.5 truncate">
-                            <span class="w-2 h-2 rounded-full ${ev.type === 'Helligdag' ? 'bg-calm-holiday' : 'bg-calm-vacation'}"></span>
+                            <span class="w-2 h-2 rounded-full ${ev.type === t.legendHoliday ? 'bg-calm-holiday' : 'bg-calm-vacation'}"></span>
                             <span class="font-medium text-linen-800 dark:text-linen-50 truncate">${ev.name}</span>
                         </div>
                         <div class="text-xs text-linen-400 shrink-0 ml-2">
-                            <span>Uge ${ev.uge}</span> • <span>${dayStr}</span>
+                            <span>${t.weekPrefix} ${ev.uge}</span> • <span>${dayFormatted}</span>
                         </div>
                     `;
                     eventsList.appendChild(item);
                 });
             }
         }
+
+        // Language toggle button listener
+        document.getElementById('lang-toggle-btn').addEventListener('click', () => {
+            currentLocale = currentLocale === 'da' ? 'en' : 'da';
+            localStorage.setItem('site_locale', currentLocale);
+            applyI18nTexts();
+            updateHero();
+            renderThreeMonthsWindow();
+        });
 
         // ICS Generator Function (RFC 5545 standard compliant)
         function generateICSContent(event) {
@@ -665,6 +887,7 @@
         // Form Submit: Generate ICS + Trigger Download + Launch mailto: link
         eventForm.addEventListener('submit', (e) => {
             e.preventDefault();
+            const t = TRANSLATIONS[currentLocale];
 
             const eventData = {
                 date: document.getElementById('event-date').value,
@@ -682,7 +905,7 @@
             const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
             const downloadUrl = URL.createObjectURL(blob);
             const a = document.createElement('a');
-            const safeHeadline = eventData.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'begivenhed';
+            const safeHeadline = eventData.headline.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '') || 'event';
             a.href = downloadUrl;
             a.download = `${eventData.date}-${safeHeadline}.ics`;
             document.body.appendChild(a);
@@ -692,14 +915,17 @@
 
             // 2. If email is provided, open default mail client with prefilled details
             if (eventData.email) {
-                const subject = encodeURIComponent(`Kalenderinvitation: ${eventData.headline} (${eventData.date})`);
+                const subject = encodeURIComponent(
+                    t.emailSubject.replace('{headline}', eventData.headline).replace('{date}', eventData.date)
+                );
                 const bodyText = encodeURIComponent(
-                    `Hej,\n\nDu er inviteret til: ${eventData.headline}\n` +
-                    `Dato: ${eventData.date}\n` +
-                    `Tidspunkt: ${eventData.startTime} - ${eventData.endTime}\n` +
-                    (eventData.location ? `Sted: ${eventData.location}\n` : '') +
-                    (eventData.purpose ? `\nFormål:\n${eventData.purpose}\n` : '') +
-                    `\n(Vedhæft venligst den downloadede .ics kalenderfil fra mappen Overførsler)\n\nVenlig hilsen,\nOprettet via DinUge.dk`
+                    t.emailGreeting
+                        .replace('{headline}', eventData.headline)
+                        .replace('{date}', eventData.date)
+                        .replace('{start}', eventData.startTime)
+                        .replace('{end}', eventData.endTime)
+                        .replace('{location}', eventData.location ? (currentLocale === 'en' ? `Location: ${eventData.location}` : `Sted: ${eventData.location}`) : '')
+                        .replace('{purpose}', eventData.purpose ? (currentLocale === 'en' ? `\nPurpose:\n${eventData.purpose}` : `\nFormål:\n${eventData.purpose}`) : '')
                 );
                 
                 setTimeout(() => {
@@ -725,21 +951,6 @@
             monthOffset = 0;
             renderThreeMonthsWindow();
         });
-
-        // Copy button
-        const btnCopy = document.getElementById('btn-copy-week');
-        const copyText = document.getElementById('copy-text');
-        if (btnCopy && copyText) {
-            btnCopy.addEventListener('click', () => {
-                const w = getISOWeekNumber(now);
-                navigator.clipboard.writeText(`Uge ${w}`).then(() => {
-                    copyText.textContent = `Kopieret: Uge ${w}!`;
-                    setTimeout(() => {
-                        copyText.textContent = 'Kopiér ugenummer';
-                    }, 2000);
-                });
-            });
-        }
 
         // Theme Switcher
         const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
@@ -768,6 +979,7 @@
         });
 
         // Initial launch
+        applyI18nTexts();
         updateHero();
         renderThreeMonthsWindow();
     </script>

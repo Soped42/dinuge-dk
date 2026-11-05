@@ -133,33 +133,14 @@
     <!-- Main Content -->
     <main class="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 py-8 sm:py-12 flex flex-col gap-10">
 
-        <!-- Focal Point: Det aktuelle ugenummer i rolig nordisk typografi -->
-        <section aria-labelledby="current-week-heading" class="border border-sand-200 dark:border-[#263126] bg-sand-100/60 dark:bg-[#1A211A] rounded-xl p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-            <div class="text-center sm:text-left">
-                <div class="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-pine-600 dark:text-pine-200 mb-2">
-                    <span class="w-2 h-2 rounded-full bg-pine-600 dark:bg-pine-200"></span>
-                    Aktuel Uge &amp; Dato
-                </div>
-                <h1 id="current-week-heading" class="text-5xl sm:text-7xl font-bold tracking-tight text-sand-900 dark:text-sand-50">
-                    Uge <span id="hero-week-num" class="text-pine-600 dark:text-pine-200">--</span>
-                </h1>
-                <p id="hero-date-str" class="text-base sm:text-lg text-sand-700 dark:text-sand-300 mt-2 font-medium">
-                    Indlæser dagsdato...
-                </p>
-            </div>
-
-            <!-- Funktionelle hurtighandlinger -->
-            <div class="flex flex-col sm:items-end gap-3 w-full sm:w-auto">
-                <button id="btn-copy-week" aria-label="Kopiér det aktuelle ugenummer" class="inline-flex items-center justify-center px-4 py-2.5 rounded text-sm font-semibold text-white bg-pine-600 hover:bg-pine-700 dark:bg-pine-700 dark:hover:bg-pine-600 transition shadow-sm">
-                    <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"></path>
-                    </svg>
-                    <span id="copy-text">Kopiér ugenummer</span>
-                </button>
-                <div class="text-xs text-sand-400 dark:text-sand-300 font-mono text-center sm:text-right">
-                    Klokken: <span id="hero-clock" class="text-sand-800 dark:text-sand-100 font-semibold">--:--:--</span> (ISO 8601)
-                </div>
-            </div>
+        <!-- Focal Point: Det aktuelle ugenummer centreret i rolig nordisk typografi -->
+        <section aria-labelledby="current-week-heading" class="border border-sand-200 dark:border-[#263126] bg-sand-100/60 dark:bg-[#1A211A] rounded-xl p-8 sm:p-12 text-center">
+            <h1 id="current-week-heading" class="text-6xl sm:text-8xl font-bold tracking-tight text-sand-900 dark:text-sand-50">
+                Uge <span id="hero-week-num" class="text-pine-600 dark:text-pine-200">--</span>
+            </h1>
+            <p id="hero-date-str" class="text-lg sm:text-xl text-sand-700 dark:text-sand-300 mt-3 font-medium">
+                --
+            </p>
         </section>
 
         <!-- 3-Måneders Glidende Kalender Vindue -->
@@ -459,21 +440,11 @@
 
         function updateHero() {
             const currentWeek = getISOWeekNumber(now);
-            const danishDayName = ['søndag', 'mandag', 'tirsdag', 'onsdag', 'torsdag', 'fredag', 'lørdag'][now.getDay()];
+            const danishDayName = ['Søndag', 'Mandag', 'Tirsdag', 'Onsdag', 'Torsdag', 'Fredag', 'Lørdag'][now.getDay()];
             document.getElementById('hero-week-num').textContent = currentWeek;
             document.getElementById('hero-date-str').textContent = 
-                `I dag er ${danishDayName} den ${now.getDate()}. ${DANISH_MONTHS[now.getMonth()].toLowerCase()} ${now.getFullYear()}`;
+                `${danishDayName} ${now.getDate()}. ${DANISH_MONTHS[now.getMonth()].toLowerCase()} ${now.getFullYear()}`;
         }
-
-        function updateClock() {
-            const d = new Date();
-            const h = String(d.getHours()).padStart(2, '0');
-            const m = String(d.getMinutes()).padStart(2, '0');
-            const s = String(d.getSeconds()).padStart(2, '0');
-            document.getElementById('hero-clock').textContent = `${h}:${m}:${s}`;
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
 
         // Dialog Handlers
         const eventDialog = document.getElementById('event-dialog');

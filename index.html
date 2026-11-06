@@ -153,7 +153,7 @@
         </section>
 
         <!-- 3-Måneders Glidende Kalender Vindue -->
-        <section aria-label="3-måneders kalenderoversigt">
+        <section id="calendar-section" aria-label="3-måneders kalenderoversigt">
             <!-- Tegnforklaring (Legend) -->
             <div class="flex flex-wrap items-center justify-end gap-4 text-xs text-linen-500 dark:text-linen-400 mb-4">
                 <span class="inline-flex items-center gap-1.5">
@@ -176,7 +176,7 @@
             </div>
 
             <!-- BOKS UNDER KALENDEREN: Vejledning -->
-            <aside aria-label="Vejledning til oprettelse af kalenderaftaler" class="border border-linen-200 dark:border-[#272E27] bg-white/70 dark:bg-[#1B201B] rounded-2xl p-6 sm:p-7 shadow-sm">
+            <aside id="guide-section" aria-label="Vejledning til oprettelse af kalenderaftaler" class="border border-linen-200 dark:border-[#272E27] bg-white/70 dark:bg-[#1B201B] rounded-2xl p-6 sm:p-7 shadow-sm">
                 <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-linen-200 dark:border-[#272E27] mb-5">
                     <div>
                         <div class="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-wider text-sage-600 dark:text-sage-300 mb-1">
@@ -232,12 +232,66 @@
         </section>
 
         <!-- Detaljeret oversigt over mærkedage og ferier i vinduet -->
-        <section aria-labelledby="period-events-heading" class="border-t border-linen-200 dark:border-[#272E27] pt-8">
+        <section id="period-events-section" aria-labelledby="period-events-heading" class="border-t border-linen-200 dark:border-[#272E27] pt-8">
             <h3 id="period-events-heading" class="text-lg font-bold tracking-tight text-linen-800 dark:text-linen-50 mb-4" data-i18n="eventsHeading">
                 Helligdage &amp; Ferier i denne periode
             </h3>
             <div id="period-events-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 text-sm">
                 <!-- Fyldes dynamisk af JS baseret på det aktuelle 3-måneders vindue -->
+            </div>
+        </section>
+
+        <!-- Sideoversigt (HTML Sitemap) -->
+        <section id="sitemap-section" aria-labelledby="sitemap-heading" class="border-t border-linen-200 dark:border-[#272E27] pt-8">
+            <div class="flex items-center gap-2 mb-4">
+                <span class="w-1.5 h-4 bg-sage-500 rounded-full"></span>
+                <h3 id="sitemap-heading" class="text-base font-semibold tracking-tight text-linen-800 dark:text-linen-50" data-i18n="sitemapHeading">
+                    Sideoversigt
+                </h3>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 text-xs">
+                <div class="p-4 rounded-xl border border-linen-200 dark:border-[#272E27] bg-white/60 dark:bg-[#1B201B]">
+                    <h4 class="font-semibold text-linen-900 dark:text-linen-100 mb-2 flex items-center gap-1.5">
+                        <span>🗓️</span> <span data-i18n="sitemapCol1Title">Aktuel Uge &amp; Kalender</span>
+                    </h4>
+                    <ul class="space-y-1.5 text-linen-600 dark:text-linen-300">
+                        <li><a href="#current-week-heading" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline" data-i18n="sitemapLinkWeek">Dagens ugenummer</a></li>
+                        <li><a href="#calendar-section" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline" data-i18n="sitemapLink3Months">3-måneders kalender</a></li>
+                        <li><a href="#period-events-section" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline" data-i18n="sitemapLinkEvents">Helligdage &amp; ferier</a></li>
+                    </ul>
+                </div>
+
+                <div class="p-4 rounded-xl border border-linen-200 dark:border-[#272E27] bg-white/60 dark:bg-[#1B201B]">
+                    <h4 class="font-semibold text-linen-900 dark:text-linen-100 mb-2 flex items-center gap-1.5">
+                        <span>✨</span> <span data-i18n="sitemapCol2Title">Funktioner</span>
+                    </h4>
+                    <ul class="space-y-1.5 text-linen-600 dark:text-linen-300">
+                        <li><a href="#guide-section" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline" data-i18n="sitemapLinkGuide">Opret kalenderaftale (.ICS)</a></li>
+                        <li><button type="button" onclick="document.getElementById('theme-toggle').click()" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline text-left" data-i18n="sitemapLinkTheme">Lys / Mørk tilstand</button></li>
+                        <li><button type="button" onclick="document.getElementById('lang-toggle-btn').click()" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline text-left" data-i18n="sitemapLinkLang">Sprog / Language (DA / EN)</button></li>
+                    </ul>
+                </div>
+
+                <div class="p-4 rounded-xl border border-linen-200 dark:border-[#272E27] bg-white/60 dark:bg-[#1B201B]">
+                    <h4 class="font-semibold text-linen-900 dark:text-linen-100 mb-2 flex items-center gap-1.5">
+                        <span>🔍</span> <span data-i18n="sitemapCol3Title">Søgemaskine &amp; SEO</span>
+                    </h4>
+                    <ul class="space-y-1.5 text-linen-600 dark:text-linen-300">
+                        <li><a href="/sitemap.xml" target="_blank" rel="noopener noreferrer" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline font-mono">XML Sitemap (sitemap.xml)</a></li>
+                        <li><a href="/robots.txt" target="_blank" rel="noopener noreferrer" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline font-mono">Robots.txt</a></li>
+                        <li><a href="https://dinuge.dk/" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline font-mono">https://dinuge.dk/</a></li>
+                    </ul>
+                </div>
+
+                <div class="p-4 rounded-xl border border-linen-200 dark:border-[#272E27] bg-white/60 dark:bg-[#1B201B]">
+                    <h4 class="font-semibold text-linen-900 dark:text-linen-100 mb-2 flex items-center gap-1.5">
+                        <span>☕</span> <span data-i18n="sitemapCol4Title">Om &amp; Støtte</span>
+                    </h4>
+                    <ul class="space-y-1.5 text-linen-600 dark:text-linen-300">
+                        <li><a href="https://buymeacoffee.com/grakan" target="_blank" rel="noopener noreferrer" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline" data-i18n="supportBtn">Buy Me a Coffee</a></li>
+                        <li><span class="text-linen-400" data-i18n="sitemapPrivacyNote">100% anonym &amp; privat</span></li>
+                    </ul>
+                </div>
             </div>
         </section>
 
@@ -339,6 +393,8 @@
             <div class="flex flex-col sm:flex-row items-center gap-2 sm:gap-4 text-center sm:text-left">
                 <p data-i18n="footerCopy">© 2026 DinUge.dk — Nordisk enkelhed og ugekalender.</p>
                 <span class="hidden sm:inline text-linen-200 dark:text-linen-700">•</span>
+                <a href="#sitemap-section" class="hover:text-sage-600 dark:hover:text-sage-300 hover:underline" data-i18n="footerSitemapLink">Sideoversigt</a>
+                <span class="hidden sm:inline text-linen-200 dark:text-linen-700">•</span>
                 <p class="text-linen-500 dark:text-linen-400" data-i18n="footerTagline">Drevet med fokus på funktion og lavt energiforbrug.</p>
             </div>
 
@@ -394,8 +450,21 @@
                 btnCancel: 'Annuller',
                 btnSubmit: 'Download .ICS & Send Mail',
                 footerCopy: '© 2026 DinUge.dk — Nordisk enkelhed og ugekalender.',
+                footerSitemapLink: 'Sideoversigt',
                 footerTagline: 'Drevet med fokus på funktion og lavt energiforbrug.',
                 supportBtn: 'Støt siden via Buy Me a Coffee',
+                sitemapHeading: 'Sideoversigt',
+                sitemapCol1Title: 'Aktuel Uge & Kalender',
+                sitemapLinkWeek: 'Dagens ugenummer',
+                sitemapLink3Months: '3-måneders kalender',
+                sitemapLinkEvents: 'Helligdage & ferier',
+                sitemapCol2Title: 'Funktioner',
+                sitemapLinkGuide: 'Opret kalenderaftale (.ICS)',
+                sitemapLinkTheme: 'Lys / Mørk tilstand',
+                sitemapLinkLang: 'Sprog / Language (DA / EN)',
+                sitemapCol3Title: 'Søgemaskine & SEO',
+                sitemapCol4Title: 'Om & Støtte',
+                sitemapPrivacyNote: '100% anonym & privat',
                 copiedWeek: 'Kopieret: Uge {w}!',
                 emailSubject: 'Kalenderinvitation: {headline} ({date})',
                 emailGreeting: 'Hej,\n\nDu er inviteret til: {headline}\nDato: {date}\nTidspunkt: {start} - {end}\n{location}\n{purpose}\n\n(Vedhæft venligst den downloadede .ics kalenderfil fra mappen Overførsler)\n\nVenlig hilsen,\nOprettet via DinUge.dk',
@@ -444,8 +513,21 @@
                 btnCancel: 'Cancel',
                 btnSubmit: 'Download .ICS & Send Mail',
                 footerCopy: '© 2026 DinUge.dk — Nordic simplicity & week calendar.',
+                footerSitemapLink: 'Sitemap',
                 footerTagline: 'Designed for high utility with low energy footprint.',
                 supportBtn: 'Support via Buy Me a Coffee',
+                sitemapHeading: 'Sitemap',
+                sitemapCol1Title: 'Current Week & Calendar',
+                sitemapLinkWeek: "Today's week number",
+                sitemapLink3Months: '3-month calendar',
+                sitemapLinkEvents: 'Holidays & breaks',
+                sitemapCol2Title: 'Features',
+                sitemapLinkGuide: 'Create calendar invite (.ICS)',
+                sitemapLinkTheme: 'Light / Dark mode',
+                sitemapLinkLang: 'Language / Sprog (DA / EN)',
+                sitemapCol3Title: 'Search & SEO',
+                sitemapCol4Title: 'About & Support',
+                sitemapPrivacyNote: '100% private & local',
                 copiedWeek: 'Copied: Week {w}!',
                 emailSubject: 'Calendar Invitation: {headline} ({date})',
                 emailGreeting: 'Hi,\n\nYou are invited to: {headline}\nDate: {date}\nTime: {start} - {end}\n{location}\n{purpose}\n\n(Please attach the downloaded .ics calendar file from your Downloads folder)\n\nBest regards,\nCreated via DinUge.dk',
